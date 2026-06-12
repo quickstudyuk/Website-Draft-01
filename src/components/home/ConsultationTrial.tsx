@@ -49,7 +49,7 @@ export default function ConsultationTrial() {
                 <div className="trial-card-bestfor">
                   Best for: Parents seeking direction.
                 </div>
-                <span className="mobile-tap-hint">Tap to view solution</span>
+                <span className="mobile-tap-hint">Tap to Reveal Solution</span>
               </div>
               
               {/* Back Side */}
@@ -81,7 +81,7 @@ export default function ConsultationTrial() {
                 <div className="trial-card-bestfor">
                   Best for: Students wanting to experience the system.
                 </div>
-                <span className="mobile-tap-hint">Tap to view solution</span>
+                <span className="mobile-tap-hint">Tap to Reveal Solution</span>
               </div>
               
               {/* Back Side */}

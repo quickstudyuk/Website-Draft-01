@@ -260,7 +260,7 @@ export default function ParentStruggles() {
                     </div>
                     <h3 className="card-title">{card.problemTitle}</h3>
                     <p className="card-desc">{card.problemDesc}</p>
-                    <span className="mobile-tap-hint">Tap to view solution</span>
+                    <span className="mobile-tap-hint">Tap to Reveal Solution</span>
                   </div>
 
                   {/* Back Side: Solution */}

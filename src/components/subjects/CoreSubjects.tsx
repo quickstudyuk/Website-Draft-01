@@ -139,7 +139,7 @@ export default function CoreSubjects() {
                         <li style={{ marginBottom: '4px', color: '#64748b', fontStyle: 'italic' }}>and more...</li>
                       </ul>
                     </div>
-                    <span className="mobile-tap-hint">Tap to view solution</span>
+                    <span className="mobile-tap-hint">Tap to Reveal Solution</span>
                   </div>
 
                   {/* Back Side: QuickStudy Solution */}
