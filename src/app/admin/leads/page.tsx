@@ -35,7 +35,7 @@ export default async function ManageLeads() {
               </tr>
             </thead>
             <tbody>
-              {leads.map((lead) => (
+              {leads.map((lead: any) => (
                 <tr 
                   key={lead.id} 
                   style={{ 
