@@ -5,36 +5,11 @@ import Link from 'next/link';
 
 export default function ConsultationTrial() {
   const [flippedCards, setFlippedCards] = useState<Record<number, boolean>>({});
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const index = Number(entry.target.getAttribute('data-index'));
-        if (entry.isIntersecting) {
-          setFlippedCards(prev => ({ ...prev, [index]: true }));
-        } else {
-          setFlippedCards(prev => ({ ...prev, [index]: false }));
-        }
-      });
-    }, {
-      threshold: 0.35,
-      rootMargin: "-8% 0px -8% 0px"
-    });
-
-    cardRefs.current.forEach((card) => {
-      if (card) observer.observe(card);
-    });
-
-    return () => {
-      cardRefs.current.forEach((card) => {
-        if (card) observer.unobserve(card);
-      });
-    };
-  }, []);
 
   const handleCardClick = (index: number) => {
-    setFlippedCards(prev => ({ ...prev, [index]: !prev[index] }));
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setFlippedCards(prev => ({ ...prev, [index]: !prev[index] }));
+    }
   };
 
   return (
@@ -60,7 +35,6 @@ export default function ConsultationTrial() {
           
           {/* Card 1: Consultation */}
           <div 
-            ref={el => { cardRefs.current[0] = el; }}
             data-index={0}
             className={`trial-flip-card ${flippedCards[0] ? 'flipped' : ''}`}
             onClick={() => handleCardClick(0)}
@@ -75,6 +49,7 @@ export default function ConsultationTrial() {
                 <div className="trial-card-bestfor">
                   Best for: Parents seeking direction.
                 </div>
+                <span className="mobile-tap-hint">Tap to view solution</span>
               </div>
               
               {/* Back Side */}
@@ -92,7 +67,6 @@ export default function ConsultationTrial() {
 
           {/* Card 2: Trial Lesson */}
           <div 
-            ref={el => { cardRefs.current[1] = el; }}
             data-index={1}
             className={`trial-flip-card ${flippedCards[1] ? 'flipped' : ''}`}
             onClick={() => handleCardClick(1)}
@@ -107,6 +81,7 @@ export default function ConsultationTrial() {
                 <div className="trial-card-bestfor">
                   Best for: Students wanting to experience the system.
                 </div>
+                <span className="mobile-tap-hint">Tap to view solution</span>
               </div>
               
               {/* Back Side */}
@@ -157,7 +132,12 @@ export default function ConsultationTrial() {
           transform-style: preserve-3d;
         }
 
-        .trial-flip-card:hover .trial-flip-card-inner,
+        @media (hover: hover) {
+          .trial-flip-card:hover .trial-flip-card-inner {
+            transform: rotateY(180deg);
+          }
+        }
+
         .trial-flip-card.flipped .trial-flip-card-inner {
           transform: rotateY(180deg);
         }
@@ -253,6 +233,22 @@ export default function ConsultationTrial() {
         .trial-book-btn:hover {
           transform: translateY(-2px);
           opacity: 0.95;
+        }
+
+        .mobile-tap-hint {
+          display: none;
+          font-size: 0.7rem;
+          color: rgba(255, 255, 255, 0.5);
+          margin-top: auto;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+        }
+
+        @media (max-width: 768px) {
+          .mobile-tap-hint {
+            display: inline-block;
+          }
         }
       `}</style>
     </section>

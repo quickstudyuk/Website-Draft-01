@@ -180,38 +180,11 @@ const cardData: StruggleCard[] = [
 
 export default function ParentStruggles() {
   const [flippedCards, setFlippedCards] = useState<Record<number, boolean>>({});
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const id = Number(entry.target.getAttribute('data-id'));
-        if (entry.isIntersecting) {
-          // Auto flip to back on scroll into view
-          setFlippedCards(prev => ({ ...prev, [id]: true }));
-        } else {
-          // Auto flip to front when out of view
-          setFlippedCards(prev => ({ ...prev, [id]: false }));
-        }
-      });
-    }, {
-      threshold: 0.35,
-      rootMargin: "-8% 0px -8% 0px"
-    });
-
-    cardRefs.current.forEach((card) => {
-      if (card) observer.observe(card);
-    });
-
-    return () => {
-      cardRefs.current.forEach((card) => {
-        if (card) observer.unobserve(card);
-      });
-    };
-  }, []);
 
   const handleCardClick = (id: number) => {
-    setFlippedCards(prev => ({ ...prev, [id]: !prev[id] }));
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setFlippedCards(prev => ({ ...prev, [id]: !prev[id] }));
+    }
   };
 
   return (
@@ -269,10 +242,9 @@ export default function ParentStruggles() {
           </p>
           
           <div className="struggles-grid">
-            {cardData.map((card, idx) => (
+            {cardData.map((card) => (
               <div 
                 key={card.id} 
-                ref={el => { cardRefs.current[idx] = el; }}
                 data-id={card.id}
                 className={`flip-card ${flippedCards[card.id] ? 'flipped' : ''}`}
                 onClick={() => handleCardClick(card.id)}
@@ -288,6 +260,7 @@ export default function ParentStruggles() {
                     </div>
                     <h3 className="card-title">{card.problemTitle}</h3>
                     <p className="card-desc">{card.problemDesc}</p>
+                    <span className="mobile-tap-hint">Tap to view solution</span>
                   </div>
 
                   {/* Back Side: Solution */}
@@ -360,7 +333,12 @@ export default function ParentStruggles() {
           transform-style: preserve-3d;
         }
 
-        .flip-card:hover .flip-card-inner,
+        @media (hover: hover) {
+          .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+          }
+        }
+
         .flip-card.flipped .flip-card-inner {
           transform: rotateY(180deg);
         }
@@ -464,6 +442,23 @@ export default function ParentStruggles() {
         .success-desc {
           color: #ffffff !important;
           opacity: 0.95;
+        }
+
+        .mobile-tap-hint {
+          display: none;
+          font-size: 0.7rem;
+          color: #64748b;
+          margin-top: 4px;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+          .mobile-tap-hint {
+            display: inline-block;
+          }
         }
       `}</style>
     </section>

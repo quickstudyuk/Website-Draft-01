@@ -56,36 +56,11 @@ const subjectData = [
 
 export default function CoreSubjects() {
   const [flippedCards, setFlippedCards] = useState<Record<number, boolean>>({});
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const index = Number(entry.target.getAttribute('data-index'));
-        if (entry.isIntersecting) {
-          setFlippedCards(prev => ({ ...prev, [index]: true }));
-        } else {
-          setFlippedCards(prev => ({ ...prev, [index]: false }));
-        }
-      });
-    }, {
-      threshold: 0.35,
-      rootMargin: "-8% 0px -8% 0px"
-    });
-
-    cardRefs.current.forEach((card) => {
-      if (card) observer.observe(card);
-    });
-
-    return () => {
-      cardRefs.current.forEach((card) => {
-        if (card) observer.unobserve(card);
-      });
-    };
-  }, []);
 
   const handleCardClick = (index: number) => {
-    setFlippedCards(prev => ({ ...prev, [index]: !prev[index] }));
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setFlippedCards(prev => ({ ...prev, [index]: !prev[index] }));
+    }
   };
 
   return (
@@ -145,7 +120,6 @@ export default function CoreSubjects() {
             {subjectData.map((subject, idx) => (
               <div 
                 key={idx} 
-                ref={el => { cardRefs.current[idx] = el; }}
                 data-index={idx}
                 className={`flip-card ${flippedCards[idx] ? 'flipped' : ''}`}
                 onClick={() => handleCardClick(idx)}
@@ -165,6 +139,7 @@ export default function CoreSubjects() {
                         <li style={{ marginBottom: '4px', color: '#64748b', fontStyle: 'italic' }}>and more...</li>
                       </ul>
                     </div>
+                    <span className="mobile-tap-hint">Tap to view solution</span>
                   </div>
 
                   {/* Back Side: QuickStudy Solution */}
@@ -228,7 +203,12 @@ export default function CoreSubjects() {
           transform-style: preserve-3d;
         }
 
-        .flip-card:hover .flip-card-inner,
+        @media (hover: hover) {
+          .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+          }
+        }
+
         .flip-card.flipped .flip-card-inner {
           transform: rotateY(180deg);
         }
@@ -321,6 +301,23 @@ export default function CoreSubjects() {
         .success-desc {
           color: #ffffff !important;
           opacity: 0.95;
+        }
+
+        .mobile-tap-hint {
+          display: none;
+          font-size: 0.7rem;
+          color: #64748b;
+          margin-top: auto;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+          .mobile-tap-hint {
+            display: inline-block;
+          }
         }
       `}</style>
     </section>
