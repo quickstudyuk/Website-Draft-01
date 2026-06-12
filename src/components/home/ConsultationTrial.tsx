@@ -237,17 +237,20 @@ export default function ConsultationTrial() {
 
         .mobile-tap-hint {
           display: none;
-          font-size: 0.7rem;
-          color: rgba(255, 255, 255, 0.5);
-          margin-top: auto;
-          font-weight: 500;
+          font-size: 0.75rem;
+          color: #38bdf8;
+          margin-top: 12px;
+          font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.05em;
         }
 
         @media (max-width: 768px) {
           .mobile-tap-hint {
-            display: inline-block;
+            display: block;
+          }
+          .trial-flip-card {
+            height: 270px;
           }
         }
       `}</style>

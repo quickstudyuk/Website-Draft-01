@@ -446,18 +446,20 @@ export default function ParentStruggles() {
 
         .mobile-tap-hint {
           display: none;
-          font-size: 0.7rem;
-          color: #64748b;
-          margin-top: 4px;
-          font-weight: 500;
+          font-size: 0.75rem;
+          color: #38bdf8;
+          margin-top: 12px;
+          font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.05em;
-          opacity: 0.8;
         }
 
         @media (max-width: 768px) {
           .mobile-tap-hint {
-            display: inline-block;
+            display: block;
+          }
+          .flip-card {
+            height: 350px;
           }
         }
       `}</style>

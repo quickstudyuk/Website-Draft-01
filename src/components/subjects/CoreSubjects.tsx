@@ -305,18 +305,20 @@ export default function CoreSubjects() {
 
         .mobile-tap-hint {
           display: none;
-          font-size: 0.7rem;
-          color: #64748b;
-          margin-top: auto;
-          font-weight: 500;
+          font-size: 0.75rem;
+          color: #1e3a8a;
+          margin-top: 12px;
+          font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.05em;
-          opacity: 0.8;
         }
 
         @media (max-width: 768px) {
           .mobile-tap-hint {
-            display: inline-block;
+            display: block;
+          }
+          .flip-card {
+            height: 380px;
           }
         }
       `}</style>
