@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import styles from './Navbar.module.css';
@@ -8,6 +8,7 @@ import styles from './Navbar.module.css';
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const navRef = useRef<HTMLElement>(null);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -16,6 +17,17 @@ export default function Navbar() {
   const closeMenu = () => {
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isOpen && navRef.current && !navRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isOpen]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -52,7 +64,7 @@ export default function Navbar() {
   }, [isOpen]);
 
   return (
-    <header className={`${styles.navbar} ${isOpen ? styles.menuOpen : ''} ${!isVisible ? styles.hidden : ''}`}>
+    <header ref={navRef} className={`${styles.navbar} ${isOpen ? styles.menuOpen : ''} ${!isVisible ? styles.hidden : ''}`}>
       <div className={styles.container}>
         <Link href="/" className={styles.logoWrapper} onClick={closeMenu}>
           <img src="/logo.png" alt="QuickStudy" className={styles.logoImage} />

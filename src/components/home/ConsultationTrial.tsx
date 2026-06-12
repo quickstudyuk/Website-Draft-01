@@ -12,31 +12,7 @@ export default function ConsultationTrial() {
     }
   };
 
-  useEffect(() => {
-    if (typeof window === 'undefined' || window.innerWidth >= 768) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const index = Number(entry.target.getAttribute('data-index'));
-          if (entry.isIntersecting) {
-            setFlippedCards((prev) => ({ ...prev, [index]: true }));
-          } else {
-            setFlippedCards((prev) => ({ ...prev, [index]: false }));
-          }
-        });
-      },
-      { 
-        rootMargin: "-40% 0px -40% 0px",
-        threshold: 0 
-      }
-    );
-
-    const cards = document.querySelectorAll('.trial-flip-card');
-    cards.forEach((card) => observer.observe(card));
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section id="get-started" style={{ 
