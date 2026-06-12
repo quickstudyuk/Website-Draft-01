@@ -1,0 +1,186 @@
+.headline {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 800;
+  margin-bottom: var(--spacing-6);
+}
+
+.pathwayVisual {
+  position: relative;
+  margin-bottom: var(--spacing-6);
+  padding: var(--spacing-4) 0;
+  overflow-x: auto;
+}
+
+.pathwayLine {
+  position: absolute;
+  top: 50%;
+  left: 50px;
+  right: 50px;
+  height: 4px;
+  background-color: rgba(255,255,255,0.2);
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.pathwaySteps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 800px;
+}
+
+.nodeWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3);
+  z-index: 2;
+  width: 140px;
+}
+
+.node {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: white;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.nodeLabel {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.arrow {
+  color: rgba(255,255,255,0.5);
+  font-size: 1.5rem;
+  font-weight: 800;
+  z-index: 2;
+}
+
+.concernsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+}
+
+@media (min-width: 640px) {
+  .concernsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.concernCard {
+  background-color: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+}
+
+.concernTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-2);
+}
+
+.concernSolution {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.9);
+}
+
+.alevelGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-6);
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .alevelGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.alevelContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.alevelDesc {
+  font-size: 1.125rem;
+  color: var(--gray-300);
+  line-height: 1.6;
+}
+
+.alevelFocusTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+  border-bottom: 1px solid var(--gray-700);
+  padding-bottom: var(--spacing-2);
+}
+
+.alevelFocusList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.alevelFocusList li {
+  font-size: 1rem;
+  color: var(--gray-200);
+}
+
+.progressionCard {
+  background-color: var(--gray-900);
+  border: 1px solid var(--gray-700);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.progressionStep {
+  display: flex;
+  gap: var(--spacing-4);
+  background-color: var(--gray-800);
+  padding: var(--spacing-4);
+  border-radius: var(--radius-lg);
+}
+
+.progressionIcon {
+  font-size: 2rem;
+  background-color: var(--gray-700);
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.progressionStep h5 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.progressionStep p {
+  font-size: 0.95rem;
+  color: var(--gray-400);
+}

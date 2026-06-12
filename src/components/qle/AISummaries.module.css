@@ -1,0 +1,224 @@
+.headline {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: var(--foreground);
+  margin-bottom: var(--spacing-6);
+}
+
+.splitLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-6);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (min-width: 992px) {
+  .splitLayout {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.leftPanel, .rightPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.dashboardMockupLeft, .dashboardMockupRight {
+  background-color: rgba(9, 17, 36, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 36px;
+  border: 2.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 35px 70px -10px rgba(0, 0, 0, 0.5), 
+    inset 0 2px 4px rgba(255, 255, 255, 0.08),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform var(--transition-normal), background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.dashboardMockupLeft {
+  transform: perspective(1200px) rotateY(6deg) rotateX(4deg);
+}
+
+.dashboardMockupRight {
+  transform: perspective(1200px) rotateY(-6deg) rotateX(4deg);
+}
+
+.dashboardMockupLeft:hover, .dashboardMockupRight:hover {
+  transform: perspective(1200px) rotateY(0deg) rotateX(0deg);
+  background-color: rgba(9, 17, 36, 0.95);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.mockupHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.mockupTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.mockupBody {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-6);
+  gap: var(--spacing-4);
+  background-color: transparent;
+}
+
+.playerControls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  margin-top: 4px;
+}
+
+.playBar {
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.playProgress {
+  width: 45%;
+  height: 100%;
+  background-color: var(--primary);
+}
+
+.controlsRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 600;
+}
+
+.summaryHeaderInside {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  padding-bottom: var(--spacing-3);
+}
+
+.summaryHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+  padding-bottom: var(--spacing-3);
+}
+
+.summaryHeader h3 {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+  background-color: var(--primary);
+  padding: 4px 10px;
+  border-radius: 8px;
+}
+
+.summaryBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.labelSuccess {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #10b981;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.labelWarning {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #d97706;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.labelPrimary {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #38bdf8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.value {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.benefitText {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  font-weight: 500;
+}
+
+.benefitText strong {
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.dashboardMockupLeft :global([class*="base"]),
+.dashboardMockupLeft :global(.lessonCard) {
+  background: rgba(30, 41, 59, 0.45) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+.dashboardMockupLeft :global([class*="lessonTitle"]) {
+  color: #ffffff !important;
+}
+.dashboardMockupLeft :global([class*="lessonDesc"]) {
+  color: rgba(255, 255, 255, 0.7) !important;
+}

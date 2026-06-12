@@ -1,0 +1,182 @@
+.header {
+  text-align: center;
+  margin-bottom: var(--spacing-6);
+}
+
+.headline {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: var(--foreground);
+}
+
+.dashboardMockup {
+  background-color: rgba(9, 17, 36, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 36px;
+  border: 2.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 35px 70px -10px rgba(0, 0, 0, 0.5), 
+    inset 0 2px 4px rgba(255, 255, 255, 0.08),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
+  transform: perspective(1200px) rotateY(6deg) rotateX(4deg);
+  transition: transform var(--transition-normal), background-color 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboardMockup:hover {
+  transform: perspective(1200px) rotateY(0deg) rotateX(0deg);
+  background-color: rgba(9, 17, 36, 0.95);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.mockupHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.mockupTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.whiteboardToolbar {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: var(--spacing-3);
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-4);
+}
+
+.toolIcon {
+  font-size: 1.5rem;
+  padding: 8px;
+  border-radius: var(--radius-md);
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.whiteboardCanvas {
+  background-color: rgba(15, 23, 42, 0.2);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+  padding: var(--spacing-6);
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paperMockup {
+  background-color: #ffffff;
+  padding: var(--spacing-5);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  width: 100%;
+  max-width: 500px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #111827;
+}
+
+.paperHeader {
+  font-weight: 700;
+  border-bottom: 2px solid #1f2937;
+  padding-bottom: var(--spacing-2);
+  margin-bottom: var(--spacing-4);
+  text-align: center;
+  color: #111827;
+}
+
+.questionBlock {
+  margin-bottom: var(--spacing-4);
+  color: #1f2937;
+}
+
+.equation {
+  margin-left: var(--spacing-5);
+  font-size: 1.125rem;
+  margin-top: 4px;
+  color: #1f2937;
+}
+
+.annotationGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-5);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+  font-size: 1.125rem;
+}
+
+.annotationTutor {
+  color: var(--primary);
+  transform: rotate(-1deg);
+}
+
+.annotationStudent {
+  color: #059669; /* emerald-600 */
+  transform: rotate(1deg);
+  margin-left: var(--spacing-4);
+}
+
+.whiteboardFooter {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  padding: var(--spacing-3) var(--spacing-4);
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.participant {
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.highlightsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-6);
+}
+
+.highlight {
+  background-color: rgba(15, 23, 42, 0.95);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-weight: 700;
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}

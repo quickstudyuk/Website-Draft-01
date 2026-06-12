@@ -1,0 +1,63 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.timelineItem {
+  display: flex;
+  gap: var(--spacing-4);
+  min-height: 100px;
+}
+
+.marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-light);
+  flex-shrink: 0;
+}
+
+.line {
+  width: 2px;
+  flex-grow: 1;
+  background-color: var(--primary-light);
+  margin-top: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  padding-bottom: var(--spacing-6);
+}
+
+.stepBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary);
+  letter-spacing: 0.05em;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.desc {
+  font-size: 1rem;
+  color: var(--gray-600);
+  line-height: 1.5;
+}

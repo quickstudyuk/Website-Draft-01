@@ -1,0 +1,117 @@
+.headline {
+  text-align: center;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.comparisonGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .comparisonGrid {
+    grid-template-columns: 1fr 1.2fr;
+    align-items: center;
+  }
+}
+
+.traditionalCard, .quickstudyCard {
+  background-color: white;
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-5);
+  display: flex;
+  flex-direction: column;
+}
+
+.traditionalCard {
+  border: 1px solid var(--gray-200);
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+.quickstudyCard {
+  position: relative;
+  background-color: rgba(9, 17, 36, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  padding: var(--spacing-6) var(--spacing-5);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  transform: scale(1);
+}
+
+@media (min-width: 768px) {
+  .quickstudyCard {
+    transform: scale(1.05);
+    z-index: 10;
+  }
+}
+
+.bestValueBadge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--primary);
+  color: white;
+  padding: 4px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: var(--spacing-5);
+  padding-bottom: var(--spacing-3);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.quickstudyCard .cardTitle {
+  color: white;
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.traditionalItem, .quickstudyItem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  font-size: 1rem;
+}
+
+.traditionalItem {
+  color: var(--gray-500);
+}
+
+.quickstudyItem {
+  color: white;
+  font-weight: 500;
+}
+
+.traditionalIcon {
+  color: var(--gray-400);
+  font-weight: 700;
+}
+
+.quickstudyIcon {
+  color: #38bdf8;
+  font-weight: 800;
+}

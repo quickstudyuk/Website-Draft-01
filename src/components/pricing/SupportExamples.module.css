@@ -1,0 +1,114 @@
+.headline {
+  text-align: center;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.subheadline {
+  display: none; /* Moved to inline P tag */
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .cardsGrid {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+  }
+}
+
+.exampleCard {
+  background-color: rgba(9, 17, 36, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  padding: var(--spacing-6) var(--spacing-5);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  transition: transform var(--transition-fast);
+}
+
+.exampleCard:hover {
+  transform: translateY(-4px);
+}
+
+.highlighted {
+  border: 2px solid #38bdf8;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  transform: scale(1.05);
+}
+
+.highlighted:hover {
+  transform: scale(1.05) translateY(-4px);
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: var(--spacing-4);
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: white;
+}
+
+.highlighted .cardTitle {
+  color: #38bdf8;
+}
+
+.freqBadge {
+  align-self: flex-start;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.highlighted .freqBadge {
+  background-color: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.idealForLabel {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.idealForText {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.5;
+}
+
+.disclaimer {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--gray-500);
+  margin-top: var(--spacing-6);
+  font-style: italic;
+}

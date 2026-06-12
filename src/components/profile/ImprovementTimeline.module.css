@@ -1,0 +1,86 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  padding: var(--spacing-4);
+  background-color: var(--background);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--card-border);
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.timeline {
+  position: relative;
+  padding-top: var(--spacing-4);
+  padding-bottom: var(--spacing-2);
+}
+
+.track {
+  position: absolute;
+  top: 26px; /* align with dots */
+  left: 5%;
+  width: 90%;
+  height: 4px;
+  background-color: var(--card-border);
+  border-radius: var(--radius-xl);
+  z-index: 1;
+}
+
+.fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: var(--radius-xl);
+}
+
+.milestones {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+
+.milestone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+  width: 30%;
+  text-align: center;
+}
+
+.dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--background);
+  border: 3px solid var(--primary);
+}
+
+.dotHighlight {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+}
+
+.label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.desc {
+  font-size: 0.75rem;
+  color: var(--foreground);
+  opacity: 0.6;
+}
+
+.descHighlight {
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 600;
+}

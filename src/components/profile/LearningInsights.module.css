@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: var(--spacing-1);
+}
+
+.subtitle {
+  font-size: 0.875rem;
+  color: var(--gray-600);
+}
+
+.insightsList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.insightCard {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--warning);
+}
+
+.icon {
+  font-size: 1.25rem;
+}
+
+.text {
+  font-size: 0.95rem;
+  color: var(--gray-800);
+  font-weight: 500;
+}

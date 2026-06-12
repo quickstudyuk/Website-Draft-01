@@ -1,0 +1,197 @@
+.headline {
+  text-align: center;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 800;
+  color: var(--foreground);
+  margin-bottom: var(--spacing-6);
+}
+
+.dashboardMockup {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(9, 17, 36, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 36px;
+  border: 2.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 35px 70px -10px rgba(0, 0, 0, 0.5), 
+    inset 0 2px 4px rgba(255, 255, 255, 0.08),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  max-width: 1100px;
+  margin: 0 auto;
+  transform: perspective(1200px) rotateY(-6deg) rotateX(4deg);
+  transition: transform var(--transition-normal), background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.dashboardMockup:hover {
+  transform: perspective(1200px) rotateY(0deg) rotateX(0deg);
+  background-color: rgba(9, 17, 36, 0.95);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+@media (min-width: 768px) {
+  .dashboardMockup {
+    flex-direction: row;
+    min-height: 600px;
+  }
+}
+
+.sidebar {
+  background-color: rgba(255, 255, 255, 0.06);
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    width: 250px;
+    border-bottom: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+.sidebarLogo {
+  padding: var(--spacing-4);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #38bdf8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebarNav {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  padding: var(--spacing-3);
+  gap: var(--spacing-2);
+}
+
+@media (min-width: 768px) {
+  .sidebarNav {
+    flex-direction: column;
+    padding: var(--spacing-4);
+    overflow-x: visible;
+  }
+}
+
+.navItem, .navItemActive {
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.navItem {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.navItem:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.navItemActive {
+  background-color: var(--primary);
+  color: white;
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: transparent;
+}
+
+.topBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-4);
+  background-color: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.topBar h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: white;
+}
+
+.profileIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.grid {
+  padding: var(--spacing-6);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.recentActivity {
+  padding: 0 var(--spacing-6) var(--spacing-6);
+}
+
+.sectionTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--foreground);
+  margin-bottom: var(--spacing-3);
+}
+
+.activityItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  background-color: rgba(255, 255, 255, 0.06);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  margin-bottom: var(--spacing-2);
+}
+
+.activityIcon {
+  font-size: 1.25rem;
+}
+
+.activityText {
+  flex: 1;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.activityText strong {
+  color: white;
+}
+
+.activityTime {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* Ensure inside card contents and metrics are high contrast white */
+.dashboardMockup [class*="dashTitle"],
+.dashboardMockup [class*="dashValue"],
+.dashboardMockup [class*="metricValue"],
+.dashboardMockup [class*="metricLabel"] {
+  color: #ffffff !important;
+}

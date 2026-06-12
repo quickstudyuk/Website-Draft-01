@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  padding: var(--spacing-4);
+  background-color: var(--background);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--card-border);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.message {
+  font-size: 0.875rem;
+  color: var(--foreground);
+  opacity: 0.8;
+  line-height: 1.4;
+}

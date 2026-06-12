@@ -1,0 +1,222 @@
+.heroSection {
+  margin-top: -85px;
+  padding: 140px 0 calc(var(--spacing-6) * 2) 0;
+  background: linear-gradient(135deg, #020617 0%, #0f172a 80%, #0d1f3c 100%);
+  overflow: hidden;
+  position: relative;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-6);
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .container {
+    grid-template-columns: 1fr 1.2fr;
+    gap: calc(var(--spacing-6) * 2);
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.headline {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: white;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.subheadline {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+}
+
+.ctaGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-2);
+}
+
+@media (min-width: 640px) {
+  .ctaGroup {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.primaryCta {
+  box-shadow: 0 8px 20px rgba(30, 58, 138, 0.2);
+}
+
+.secondaryCta {
+  background-color: white;
+}
+
+.visuals {
+  position: relative;
+  width: 100%;
+}
+
+.dashboardMockup {
+  background-color: rgba(9, 17, 36, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 36px;
+  border: 2.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 35px 70px -10px rgba(0, 0, 0, 0.5), 
+    inset 0 2px 4px rgba(255, 255, 255, 0.08),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transform: perspective(1200px) rotateY(-6deg) rotateX(4deg);
+  transition: transform var(--transition-normal), background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.dashboardMockup:hover {
+  transform: perspective(1200px) rotateY(0deg) rotateX(0deg);
+  background-color: rgba(9, 17, 36, 0.95);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.mockupHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.mockupTitle {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.mockupBody {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-4);
+  gap: var(--spacing-4);
+  background-color: transparent;
+}
+
+@media (min-width: 640px) {
+  .mockupBody {
+    flex-direction: row;
+  }
+}
+
+.mainContent {
+  flex: 2;
+}
+
+.sideBar {
+  flex: 1;
+}
+
+.sectionTitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: var(--spacing-3);
+  letter-spacing: 0.05em;
+}
+
+.lessonGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-3);
+}
+
+.summaryCard {
+  background-color: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-3);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.summaryTopic {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #38bdf8;
+  background-color: rgba(56, 189, 248, 0.12);
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.summaryText {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.5;
+}
+
+/* Make dashboard mockup cards look like dark glass cards */
+.dashboardMockup [class*="base"],
+.dashboardMockup [class*="lessonCard"] {
+  background: rgba(30, 41, 59, 0.45) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25) !important;
+  transition: all 0.3s ease;
+}
+
+.dashboardMockup [class*="base"]:hover,
+.dashboardMockup [class*="lessonCard"]:hover {
+  background: rgba(30, 41, 59, 0.6) !important;
+  border-color: rgba(56, 189, 248, 0.3) !important;
+}
+
+.dashboardMockup [class*="lessonTitle"],
+.dashboardMockup [class*="dashTitle"],
+.dashboardMockup [class*="dashValue"] {
+  color: #ffffff !important;
+}
+
+.dashboardMockup [class*="lessonDesc"] {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.dashboardMockup [class*="lessonPlayBtn"] {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.dashboardMockup [class*="lessonCard"]:hover [class*="lessonPlayBtn"] {
+  background-color: #38bdf8 !important;
+  border-color: #38bdf8 !important;
+  color: #0f172a !important;
+}
