@@ -1,12 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -16,8 +17,42 @@ export default function Navbar() {
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      if (window.innerWidth >= 768) {
+        setIsVisible(true);
+        return;
+      }
+
+      if (isOpen) {
+        setIsVisible(true);
+        return;
+      }
+
+      const currentScrollY = window.scrollY;
+
+      // Only hide if scrolled down past some threshold (85px) to prevent hiding at the top
+      if (currentScrollY > lastScrollY && currentScrollY > 85) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isOpen]);
+
   return (
-    <header className={`${styles.navbar} ${isOpen ? styles.menuOpen : ''}`}>
+    <header className={`${styles.navbar} ${isOpen ? styles.menuOpen : ''} ${!isVisible ? styles.hidden : ''}`}>
       <div className={styles.container}>
         <Link href="/" className={styles.logoWrapper} onClick={closeMenu}>
           <img src="/logo.png" alt="QuickStudy" className={styles.logoImage} />
