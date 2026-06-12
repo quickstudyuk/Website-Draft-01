@@ -34,7 +34,7 @@ export default function ConsultationTrial() {
   }, []);
 
   const handleCardClick = (index: number) => {
-    setFlippedCards(prev => ({ ...prev, [index]: !prev[prev[index]] }));
+    setFlippedCards(prev => ({ ...prev, [index]: !prev[index] }));
   };
 
   return (
