@@ -12,6 +12,32 @@ export default function ConsultationTrial() {
     }
   };
 
+  useEffect(() => {
+    if (typeof window === 'undefined' || window.innerWidth >= 768) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const index = Number(entry.target.getAttribute('data-index'));
+          if (entry.isIntersecting) {
+            setFlippedCards((prev) => ({ ...prev, [index]: true }));
+          } else {
+            setFlippedCards((prev) => ({ ...prev, [index]: false }));
+          }
+        });
+      },
+      { 
+        rootMargin: "-40% 0px -40% 0px",
+        threshold: 0 
+      }
+    );
+
+    const cards = document.querySelectorAll('.trial-flip-card');
+    cards.forEach((card) => observer.observe(card));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="get-started" style={{ 
       backgroundColor: 'var(--gray-900)', 
@@ -237,20 +263,28 @@ export default function ConsultationTrial() {
 
         .mobile-tap-hint {
           display: none;
-          font-size: 0.75rem;
-          color: #38bdf8;
-          margin-top: 12px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
         }
 
         @media (max-width: 768px) {
           .mobile-tap-hint {
             display: block;
+            font-size: 0.75rem;
+            color: #38bdf8;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            text-align: center;
+          }
+          .trial-flip-card-front {
+            padding-bottom: 48px;
           }
           .trial-flip-card {
-            height: 270px;
+            height: 300px;
           }
         }
       `}</style>

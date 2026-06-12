@@ -187,6 +187,33 @@ export default function ParentStruggles() {
     }
   };
 
+  useEffect(() => {
+    // Only apply scroll-flip logic on mobile devices
+    if (typeof window === 'undefined' || window.innerWidth >= 768) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = Number(entry.target.getAttribute('data-id'));
+          if (entry.isIntersecting) {
+            setFlippedCards((prev) => ({ ...prev, [id]: true }));
+          } else {
+            setFlippedCards((prev) => ({ ...prev, [id]: false }));
+          }
+        });
+      },
+      { 
+        rootMargin: "-40% 0px -40% 0px", // Trigger when card is in the middle 20% of viewport
+        threshold: 0 
+      }
+    );
+
+    const cards = document.querySelectorAll('.flip-card');
+    cards.forEach((card) => observer.observe(card));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="section-padding" style={{ 
       backgroundColor: '#f8fafc',
@@ -446,20 +473,28 @@ export default function ParentStruggles() {
 
         .mobile-tap-hint {
           display: none;
-          font-size: 0.75rem;
-          color: #38bdf8;
-          margin-top: 12px;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
         }
 
         @media (max-width: 768px) {
           .mobile-tap-hint {
             display: block;
+            font-size: 0.75rem;
+            color: #0284c7;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            text-align: center;
+          }
+          .flip-card-front {
+            padding-bottom: 48px;
           }
           .flip-card {
-            height: 350px;
+            height: 380px;
           }
         }
       `}</style>
