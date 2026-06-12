@@ -333,7 +333,7 @@ export default function ParentStruggles() {
           transform-style: preserve-3d;
         }
 
-        @media (hover: hover) {
+        @media (hover: hover) and (pointer: fine) {
           .flip-card:hover .flip-card-inner {
             transform: rotateY(180deg);
           }

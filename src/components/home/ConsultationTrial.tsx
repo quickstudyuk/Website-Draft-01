@@ -132,7 +132,7 @@ export default function ConsultationTrial() {
           transform-style: preserve-3d;
         }
 
-        @media (hover: hover) {
+        @media (hover: hover) and (pointer: fine) {
           .trial-flip-card:hover .trial-flip-card-inner {
             transform: rotateY(180deg);
           }
