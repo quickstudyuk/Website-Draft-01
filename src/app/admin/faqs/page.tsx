@@ -35,7 +35,7 @@ export default async function ManageFAQs() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         <h2 style={{ fontSize: '1.2rem' }}>Existing FAQs</h2>
         {faqs.length === 0 && <p style={{ color: 'rgba(255,255,255,0.5)' }}>No FAQs added yet.</p>}
-        {faqs.map(faq => (
+        {faqs.map((faq: any) => (
           <div key={faq.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', background: 'rgba(255,255,255,0.02)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
             <div style={{ flex: 1, paddingRight: '20px' }}>
               <h3 style={{ fontSize: '1.1rem', margin: '0 0 8px 0', color: '#38bdf8' }}>{faq.question}</h3>

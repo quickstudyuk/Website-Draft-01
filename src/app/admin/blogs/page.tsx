@@ -29,7 +29,7 @@ export default async function ManageBlogs() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         <h2 style={{ fontSize: '1.2rem' }}>Existing Blogs</h2>
         {blogs.length === 0 && <p style={{ color: 'rgba(255,255,255,0.5)' }}>No blogs uploaded yet.</p>}
-        {blogs.map(blog => (
+        {blogs.map((blog: any) => (
           <div key={blog.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.02)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.05)' }}>
             <div>
               <h3 style={{ fontSize: '1.1rem', margin: '0 0 4px 0' }}>{blog.title}</h3>

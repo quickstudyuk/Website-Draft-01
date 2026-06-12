@@ -18,7 +18,7 @@ export default async function BlogIndexPage() {
           </div>
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '24px' }}>
-            {blogs.map(blog => (
+            {blogs.map((blog: any) => (
               <Link key={blog.id} href={`/blog/${blog.id}`} style={{ textDecoration: 'none' }}>
                 <div style={{ 
                   background: 'rgba(255,255,255,0.03)', 
