@@ -187,6 +187,32 @@ export default function ParentStruggles() {
     }
   };
 
+  useEffect(() => {
+    // Only apply scroll-flip logic on mobile devices
+    if (typeof window === 'undefined' || window.innerWidth >= 768) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = Number(entry.target.getAttribute('data-id'));
+          if (entry.isIntersecting) {
+            setFlippedCards((prev) => ({ ...prev, [id]: true }));
+          } else {
+            setFlippedCards((prev) => ({ ...prev, [id]: false }));
+          }
+        });
+      },
+      { 
+        rootMargin: "-40% 0px -40% 0px", // Trigger when card is in the middle 20% of viewport
+        threshold: 0 
+      }
+    );
+
+    const cards = document.querySelectorAll('.flip-card');
+    cards.forEach((card) => observer.observe(card));
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section className="section-padding" style={{ 
