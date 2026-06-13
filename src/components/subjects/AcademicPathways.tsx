@@ -1,8 +1,14 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function AcademicPathways() {
+  const [activeMobilePathway, setActiveMobilePathway] = useState<number | null>(null);
+
+  const togglePathway = (index: number) => {
+    setActiveMobilePathway(activeMobilePathway === index ? null : index);
+  };
+
   return (
     <section className="pathways-section">
       <div className="container" style={{ maxWidth: '1100px', position: 'relative' }}>
@@ -211,67 +217,86 @@ export default function AcademicPathways() {
 
         </div>
 
-        {/* 2. MOBILE VIEW (Stacked Cards with Central Node at Top) */}
+        {/* 2. MOBILE VIEW (Compact Accordion List) */}
         <div className="pathways-mobile-container">
-          <div className="center-core-node-mobile">
-            <svg viewBox="0 0 200 200" width="140" height="140">
-                <circle cx="100" cy="100" r="65" fill="rgba(9, 17, 36, 0.8)" stroke="rgba(56, 189, 248, 0.5)" strokeWidth="2" />
-                <circle cx="100" cy="100" r="45" fill="url(#core-gradient-mobile)" />
-                <circle cx="100" cy="100" r="45" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" />
-                <g transform="translate(75, 75) scale(0.5)">
-                  <path d="M50 15 L90 35 L50 55 L10 35 Z" fill="rgba(255,255,255,0.9)" />
-                  <path d="M20 40 L20 65 C30 75, 70 75, 80 65 L80 40" fill="none" stroke="rgba(255,255,255,0.9)" strokeWidth="4" />
-                  <line x1="90" y1="35" x2="90" y2="60" stroke="rgba(255,255,255,0.9)" strokeWidth="4" />
-                </g>
-                <defs>
-                  <radialGradient id="core-gradient-mobile" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#38bdf8" />
-                    <stop offset="100%" stopColor="#1e3a8a" />
-                  </radialGradient>
-                </defs>
-            </svg>
-          </div>
-
-          <div className="pathways-cards-stack-mobile">
-            {/* Card 1 */}
-            <div className="pathways-card-mobile">
-              <h3 className="card-title-mobile" style={{ color: '#38bdf8' }}>YEAR 7-8 PATHWAY</h3>
-              <p className="card-subtitle-mobile">Key Stage 3 Foundation</p>
-              <ul className="card-list-mobile">
-                <li><strong>Focus:</strong> Bridging the primary-to-secondary gap.</li>
-                <li><strong>Core Skills:</strong> Foundational Maths & English literacy.</li>
-              </ul>
+          <div className="pathways-accordion-mobile">
+            
+            {/* Item 1 */}
+            <div className="pathways-accordion-item" onClick={() => togglePathway(0)}>
+              <div className="pathways-accordion-header" style={{ borderLeftColor: '#38bdf8' }}>
+                <div>
+                  <h3 className="card-title-mobile" style={{ color: '#38bdf8' }}>YEAR 7-8 PATHWAY</h3>
+                  <p className="card-subtitle-mobile" style={{ margin: 0, padding: 0, border: 'none' }}>Key Stage 3 Foundation</p>
+                </div>
+                <span className={`accordion-icon ${activeMobilePathway === 0 ? 'active' : ''}`} style={{ color: '#38bdf8' }}>▼</span>
+              </div>
+              <div className="pathways-accordion-content" style={{ maxHeight: activeMobilePathway === 0 ? '300px' : '0px', opacity: activeMobilePathway === 0 ? 1 : 0 }}>
+                <ul className="card-list-mobile">
+                  <li><strong>Focus:</strong> Bridging the primary-to-secondary gap.</li>
+                  <li><strong>Core Skills:</strong> Foundational Maths & English literacy.</li>
+                  <li><strong>Habits:</strong> Building independent study routines early.</li>
+                  <li><strong>QLE Setup:</strong> Introduction to lesson recordings.</li>
+                </ul>
+              </div>
             </div>
 
-            {/* Card 2 */}
-            <div className="pathways-card-mobile">
-              <h3 className="card-title-mobile" style={{ color: '#818cf8' }}>YEAR 9 PATHWAY</h3>
-              <p className="card-subtitle-mobile">KS3 Transition Year</p>
-              <ul className="card-list-mobile">
-                <li><strong>Focus:</strong> Preparation for GCSE options.</li>
-                <li><strong>Core Skills:</strong> Advanced problem solving & analysis.</li>
-              </ul>
+            {/* Item 2 */}
+            <div className="pathways-accordion-item" onClick={() => togglePathway(1)}>
+              <div className="pathways-accordion-header" style={{ borderLeftColor: '#818cf8' }}>
+                <div>
+                  <h3 className="card-title-mobile" style={{ color: '#818cf8' }}>YEAR 9 PATHWAY</h3>
+                  <p className="card-subtitle-mobile" style={{ margin: 0, padding: 0, border: 'none' }}>KS3 Transition Year</p>
+                </div>
+                <span className={`accordion-icon ${activeMobilePathway === 1 ? 'active' : ''}`} style={{ color: '#818cf8' }}>▼</span>
+              </div>
+              <div className="pathways-accordion-content" style={{ maxHeight: activeMobilePathway === 1 ? '300px' : '0px', opacity: activeMobilePathway === 1 ? 1 : 0 }}>
+                <ul className="card-list-mobile">
+                  <li><strong>Focus:</strong> Preparation for GCSE options.</li>
+                  <li><strong>Core Skills:</strong> Advanced problem solving & analysis.</li>
+                  <li><strong>Habits:</strong> Using AI revision tools effectively.</li>
+                  <li><strong>Outcome:</strong> Confidence to tackle Key Stage 4.</li>
+                </ul>
+              </div>
             </div>
 
-            {/* Card 3 */}
-            <div className="pathways-card-mobile">
-              <h3 className="card-title-mobile" style={{ color: '#10b981' }}>GCSE PATHWAY</h3>
-              <p className="card-subtitle-mobile">Year 10-11 (KS4)</p>
-              <ul className="card-list-mobile">
-                <li><strong>Focus:</strong> Syllabus mastery & exam readiness.</li>
-                <li><strong>Core Skills:</strong> Exam technique & time management.</li>
-              </ul>
+            {/* Item 3 */}
+            <div className="pathways-accordion-item" onClick={() => togglePathway(2)}>
+              <div className="pathways-accordion-header" style={{ borderLeftColor: '#10b981' }}>
+                <div>
+                  <h3 className="card-title-mobile" style={{ color: '#10b981' }}>GCSE PATHWAY</h3>
+                  <p className="card-subtitle-mobile" style={{ margin: 0, padding: 0, border: 'none' }}>Year 10-11 (KS4)</p>
+                </div>
+                <span className={`accordion-icon ${activeMobilePathway === 2 ? 'active' : ''}`} style={{ color: '#10b981' }}>▼</span>
+              </div>
+              <div className="pathways-accordion-content" style={{ maxHeight: activeMobilePathway === 2 ? '300px' : '0px', opacity: activeMobilePathway === 2 ? 1 : 0 }}>
+                <ul className="card-list-mobile">
+                  <li><strong>Focus:</strong> Syllabus mastery & exam readiness.</li>
+                  <li><strong>Core Skills:</strong> Exam technique & time management.</li>
+                  <li><strong>Support:</strong> AI generated revision summaries.</li>
+                  <li><strong>Outcome:</strong> Achieving or exceeding target grades.</li>
+                </ul>
+              </div>
             </div>
 
-            {/* Card 4 */}
-            <div className="pathways-card-mobile">
-              <h3 className="card-title-mobile" style={{ color: '#f59e0b' }}>A-LEVEL PATHWAY</h3>
-              <p className="card-subtitle-mobile">Year 12-13 (KS5)</p>
-              <ul className="card-list-mobile">
-                <li><strong>Focus:</strong> Deep subject mastery & complex application.</li>
-                <li><strong>Core Skills:</strong> Independent study, university prep.</li>
-              </ul>
+            {/* Item 4 */}
+            <div className="pathways-accordion-item" onClick={() => togglePathway(3)}>
+              <div className="pathways-accordion-header" style={{ borderLeftColor: '#f59e0b' }}>
+                <div>
+                  <h3 className="card-title-mobile" style={{ color: '#f59e0b' }}>A-LEVEL PATHWAY</h3>
+                  <p className="card-subtitle-mobile" style={{ margin: 0, padding: 0, border: 'none' }}>Year 12-13 (KS5)</p>
+                </div>
+                <span className={`accordion-icon ${activeMobilePathway === 3 ? 'active' : ''}`} style={{ color: '#f59e0b' }}>▼</span>
+              </div>
+              <div className="pathways-accordion-content" style={{ maxHeight: activeMobilePathway === 3 ? '300px' : '0px', opacity: activeMobilePathway === 3 ? 1 : 0 }}>
+                <ul className="card-list-mobile">
+                  <li><strong>Focus:</strong> Deep subject mastery & complex application.</li>
+                  <li><strong>Core Skills:</strong> Independent study, university prep.</li>
+                  <li><strong>Support:</strong> Specialist top 5% graduate tutors.</li>
+                  <li><strong>Outcome:</strong> Elite university admissions.</li>
+                </ul>
+              </div>
             </div>
+
           </div>
         </div>
 
@@ -451,32 +476,34 @@ export default function AcademicPathways() {
           .pathways-mobile-container {
             display: flex !important;
             flex-direction: column;
-            align-items: center;
-            gap: 40px;
             width: 100%;
           }
 
-          .center-core-node-mobile {
-            animation: float-slow 5s ease-in-out infinite;
-          }
-
-          .pathways-cards-stack-mobile {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 100%;
-            max-width: 600px;
-          }
-
-          .pathways-card-mobile {
-            background: rgba(9, 17, 36, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+          .pathways-accordion-mobile {
             display: flex;
             flex-direction: column;
             gap: 12px;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+          }
+
+          .pathways-accordion-item {
+            background: rgba(9, 17, 36, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: border-color 0.3s ease;
+          }
+
+          .pathways-accordion-header {
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-left: 4px solid;
           }
 
           .card-title-mobile {
@@ -490,24 +517,38 @@ export default function AcademicPathways() {
             font-size: 0.85rem;
             font-weight: 600;
             color: rgba(255,255,255,0.6);
-            margin: 0 0 12px 0;
+            margin: 0;
             text-align: left;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 12px;
+          }
+
+          .accordion-icon {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+          }
+
+          .accordion-icon.active {
+            transform: rotate(180deg);
+          }
+
+          .pathways-accordion-content {
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.4s ease;
+            background: rgba(255, 255, 255, 0.03);
           }
 
           .card-list-mobile {
             list-style: none;
-            padding: 0;
+            padding: 16px 20px;
             margin: 0;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
           }
 
           .card-list-mobile li {
             font-size: 0.85rem;
             color: rgba(255,255,255,0.8);
+            line-height: 1.4;
           }
         }
       `}</style>

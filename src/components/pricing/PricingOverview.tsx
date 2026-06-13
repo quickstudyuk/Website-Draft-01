@@ -1,17 +1,14 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 export default function PricingOverview() {
-  const [sessions, setSessions] = React.useState(12);
-  const rate = 18;
-  const total = sessions * rate;
+  const [sessions, setSessions] = useState(12);
+  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
 
-  // Helper to give parents context on frequency (e.g. 8 sessions = 2 sessions per week)
   const getFrequencyText = (qty: number) => {
     const weeklyAvg = (qty / 4).toFixed(1);
-    // clean up .0
     const weeklyFormatted = weeklyAvg.endsWith('.0') ? weeklyAvg.slice(0, -2) : weeklyAvg;
     return `Approximately ${weeklyFormatted} sessions per week`;
   };
@@ -21,8 +18,8 @@ export default function PricingOverview() {
       backgroundColor: '#f8fafc',
       position: 'relative',
       overflow: 'hidden',
-      paddingTop: '100px',
-      paddingBottom: '100px',
+      paddingTop: '80px',
+      paddingBottom: '60px',
       borderTop: '1px solid #e2e8f0',
       borderBottom: '1px solid #e2e8f0'
     }}>
@@ -40,131 +37,178 @@ export default function PricingOverview() {
         zIndex: 0, pointerEvents: 'none'
       }}></div>
 
-      <div className="container" style={{ maxWidth: '1100px', position: 'relative', zIndex: 1 }}>
-        <div className="pricing-grid" style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          gap: '50px',
-          alignItems: 'center'
-        }}>
+      <div className="container" style={{ maxWidth: '850px', position: 'relative', zIndex: 1, margin: '0 auto', textAlign: 'center' }}>
+        
+        {/* Header Block */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', alignItems: 'center', marginBottom: '32px' }}>
+          <span style={{
+            display: 'inline-block',
+            fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase',
+            letterSpacing: '0.15em', color: '#0284c7',
+            background: 'rgba(2, 132, 199, 0.08)',
+            border: '1px solid rgba(2, 132, 199, 0.2)',
+            borderRadius: '100px', padding: '6px 18px'
+          }}>Core Pricing</span>
           
-          {/* Left Side: Pricing details */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <div>
-              <span style={{
-                display: 'inline-block',
-                fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase',
-                letterSpacing: '0.15em', color: '#0284c7',
-                background: 'rgba(2, 132, 199, 0.08)',
-                border: '1px solid rgba(2, 132, 199, 0.2)',
-                borderRadius: '100px', padding: '6px 18px',
-                marginBottom: '16px'
-              }}>Core Pricing</span>
-              
-              <h2 style={{ 
-                fontSize: 'clamp(2.25rem, 5vw, 3.25rem)', 
-                fontWeight: 800, 
-                color: '#0f172a', 
-                letterSpacing: '-0.02em', 
-                margin: 0,
-                lineHeight: 1.15
-              }}>
-                Simple, Transparent Pricing
-              </h2>
-            </div>
+          <h2 style={{ 
+            fontSize: 'clamp(2.25rem, 5vw, 3.25rem)', 
+            fontWeight: 800, 
+            color: '#0f172a', 
+            letterSpacing: '-0.02em', 
+            margin: 0,
+            lineHeight: 1.15
+          }}>
+            Simple, Transparent Pricing
+          </h2>
+          <p style={{ color: '#475569', fontSize: '1.1rem', maxWidth: '650px', margin: '0 auto', lineHeight: 1.6 }}>
+            Pay-as-you-go or block book depending on your needs. Adjust or cancel sessions anytime. No hidden fees. No long-term contracts.
+          </p>
+        </div>
 
-            {/* Flat Rate Info Card - Dark Styling */}
-            <div style={{ 
-              background: 'rgba(9, 17, 36, 0.95)', 
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255, 255, 255, 0.15)',
-              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.25)',
-              padding: '36px 30px', 
-              borderRadius: '24px',
-              transition: 'transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease',
-              cursor: 'default'
-            }}
-            className="price-display-card"
-            >
-              <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '8px' }}>Standard Flat Rate</div>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-                <span style={{ fontSize: 'clamp(3.5rem, 6vw, 4.5rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1 }}>£18</span>
-                <span style={{ fontSize: '1.25rem', fontWeight: 700, color: '#60a5fa' }}>/ session</span>
-              </div>
-              <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.95rem', marginTop: '16px', lineHeight: 1.5, marginBottom: 0 }}>
-                Includes 1:1 tailored support, full lesson recordings, automated summaries, and parent dashboard access.
-              </p>
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', color: '#475569', fontSize: '1.1rem', lineHeight: 1.6 }}>
-              <p style={{ margin: 0, fontWeight: 700, color: '#0f172a' }}>No hidden fees. No long-term contracts.</p>
-              <p style={{ margin: 0 }}>Pay-as-you-go or block book depending on your needs. Adjust or cancel sessions anytime.</p>
-            </div>
-            
-            <div style={{ marginTop: '8px' }}>
-              <Link href="/book-trial" style={{ textDecoration: 'none' }}>
-                <button 
-                  style={{ 
-                    padding: '16px 32px', 
-                    fontSize: '1.05rem', 
-                    backgroundColor: 'rgba(2, 132, 199, 0.1)', 
-                    color: '#0284c7', 
-                    border: '1px solid rgba(2, 132, 199, 0.3)', 
-                    borderRadius: 'var(--radius-md)', 
-                    fontWeight: 700, 
-                    cursor: 'pointer', 
-                    transition: 'all 0.2s ease', 
-                    boxShadow: '0 4px 15px rgba(2, 132, 199, 0.05)' 
-                  }} 
-                  onMouseOver={(e) => { 
-                    e.currentTarget.style.backgroundColor = 'rgba(2, 132, 199, 0.18)'; 
-                    e.currentTarget.style.transform = 'translateY(-2px)'; 
-                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(2, 132, 199, 0.1)';
-                  }} 
-                  onMouseOut={(e) => { 
-                    e.currentTarget.style.backgroundColor = 'rgba(2, 132, 199, 0.1)'; 
-                    e.currentTarget.style.transform = 'translateY(0)'; 
-                    e.currentTarget.style.boxShadow = '0 4px 15px rgba(2, 132, 199, 0.05)';
-                  }}
-                >
-                  Book A Free Trial Lesson
-                </button>
-              </Link>
-            </div>
+        {/* Flat Rate Info Card - Centered */}
+        <div style={{ 
+          background: 'rgba(9, 17, 36, 0.95)', 
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255, 255, 255, 0.15)',
+          boxShadow: '0 20px 40px rgba(0, 0, 0, 0.25)',
+          padding: '36px 30px', 
+          borderRadius: '24px',
+          maxWidth: '600px',
+          margin: '0 auto 24px auto',
+          textAlign: 'center'
+        }}
+        className="price-display-card"
+        >
+          <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#38bdf8', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '8px' }}>Standard Flat Rate</div>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', justifyContent: 'center' }}>
+            <span style={{ fontSize: 'clamp(3.5rem, 6vw, 4.5rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1 }}>£18</span>
+            <span style={{ fontSize: '1.25rem', fontWeight: 700, color: '#60a5fa' }}>/ session</span>
           </div>
+          <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.95rem', marginTop: '16px', lineHeight: 1.5, marginBottom: 0 }}>
+            Includes 1:1 tailored support, full lesson recordings, automated summaries, and parent dashboard access.
+          </p>
+        </div>
 
-          {/* Right Side: Interactive Expense Estimator - Dark Styling */}
+        {/* Action Button Group */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', marginBottom: '20px' }}>
+          <Link href="/book-trial" style={{ textDecoration: 'none' }}>
+            <button 
+              style={{ 
+                padding: '14px 28px', 
+                fontSize: '1rem', 
+                backgroundColor: '#0f172a', 
+                color: '#ffffff', 
+                border: '1px solid rgba(255, 255, 255, 0.1)', 
+                borderRadius: 'var(--radius-md)', 
+                fontWeight: 700, 
+                cursor: 'pointer', 
+                transition: 'all 0.2s ease', 
+                boxShadow: '0 4px 15px rgba(0,0,0,0.1)' 
+              }} 
+              onMouseOver={(e) => { 
+                e.currentTarget.style.backgroundColor = '#1e293b'; 
+                e.currentTarget.style.transform = 'translateY(-2px)'; 
+              }} 
+              onMouseOut={(e) => { 
+                e.currentTarget.style.backgroundColor = '#0f172a'; 
+                e.currentTarget.style.transform = 'translateY(0)'; 
+              }}
+            >
+              Book A Free Trial Lesson
+            </button>
+          </Link>
+        </div>
+
+        {/* Expandable Calculator Button */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '8px' }}>
+          <button 
+            onClick={() => setIsCalculatorOpen(!isCalculatorOpen)}
+            style={{
+              display: 'inline-flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              padding: '16px 32px',
+              backgroundColor: '#0f172a',
+              border: '1.5px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '20px',
+              color: '#ffffff',
+              cursor: 'pointer',
+              boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)',
+              transition: 'all 0.2s ease',
+              width: '100%',
+              maxWidth: '380px',
+              boxSizing: 'border-box'
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.backgroundColor = '#1e293b';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.backgroundColor = '#0f172a';
+              e.currentTarget.style.transform = 'translateY(0)';
+            }}
+          >
+            <span style={{ fontSize: '1.1rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '8px', color: '#ffffff' }}>
+              Calculate Your Monthly Cost
+              <span style={{ 
+                transform: isCalculatorOpen ? 'rotate(180deg)' : 'rotate(0deg)', 
+                transition: 'transform 0.3s ease',
+                display: 'inline-block',
+                fontSize: '0.85rem',
+                color: '#ffffff'
+              }}>▼</span>
+            </span>
+            <span style={{ fontSize: '0.8rem', color: 'rgba(255, 255, 255, 0.7)', fontWeight: 700, marginTop: '2px' }}>
+              in 1 easy step
+            </span>
+          </button>
+        </div>
+
+        {/* Sliding Calculator Drawer */}
+        <div style={{
+          maxHeight: isCalculatorOpen ? '1000px' : '0px',
+          opacity: isCalculatorOpen ? 1 : 0,
+          visibility: isCalculatorOpen ? 'visible' : 'hidden',
+          overflow: 'hidden',
+          transition: 'max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease',
+          marginTop: '20px',
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center'
+        }}>
           <div style={{
             background: 'rgba(9, 17, 36, 0.95)',
             backdropFilter: 'blur(12px)',
             WebkitBackdropFilter: 'blur(12px)',
             border: '1px solid rgba(255, 255, 255, 0.15)',
             borderRadius: '28px',
-            padding: '40px 32px',
+            padding: '36px 30px',
             boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
             display: 'flex',
             flexDirection: 'column',
-            gap: '30px'
+            gap: '24px',
+            width: '100%',
+            maxWidth: '600px'
           }}
           className="estimator-card"
           >
-            <div>
-              <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#ffffff', margin: 0 }}>Monthly Expense Estimator</h3>
-              <p style={{ color: 'rgba(255, 255, 255, 0.5)', fontSize: '0.95rem', marginTop: '6px', marginBottom: 0 }}>
-                Slide to select number of sessions per month (8 to 40).
+            <div style={{ textAlign: 'left' }}>
+              <h3 style={{ fontSize: '1.45rem', fontWeight: 800, color: '#ffffff', margin: 0 }}>Monthly Expense Estimator</h3>
+              <p style={{ color: 'rgba(255, 255, 255, 0.5)', fontSize: '0.9rem', marginTop: '4px', marginBottom: 0 }}>
+                Adjust the slider to choose number of sessions per month (8 to 40).
               </p>
             </div>
 
-            {/* Selector Control */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            {/* Slider Control */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                <span style={{ fontSize: '1.05rem', fontWeight: 700, color: 'rgba(255, 255, 255, 0.85)' }}>Sessions per month</span>
+                <span style={{ fontSize: '1rem', fontWeight: 700, color: 'rgba(255, 255, 255, 0.85)' }}>Sessions per month</span>
                 <span style={{ fontSize: '2rem', fontWeight: 800, color: '#38bdf8' }}>{sessions}</span>
               </div>
 
               {/* Slider Input */}
-              <div style={{ position: 'relative', width: '100%', padding: '10px 0' }}>
+              <div style={{ position: 'relative', width: '100%', padding: '6px 0' }}>
                 <input 
                   type="range" 
                   min="8" 
@@ -188,8 +232,8 @@ export default function PricingOverview() {
               <div style={{ 
                 textAlign: 'center', 
                 color: '#60a5fa', 
-                fontSize: '0.95rem', 
-                fontWeight: 600,
+                fontSize: '0.9rem', 
+                fontWeight: 700,
                 backgroundColor: 'rgba(96, 165, 250, 0.08)',
                 padding: '10px 14px',
                 borderRadius: '10px',
@@ -199,25 +243,41 @@ export default function PricingOverview() {
               </div>
             </div>
 
-            {/* Result Display */}
-            <div style={{
-              backgroundColor: 'rgba(9, 17, 36, 0.5)',
-              border: '1px solid rgba(255, 255, 255, 0.05)',
-              borderRadius: '20px',
-              padding: '24px',
-              textAlign: 'center'
-            }}>
-              <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'rgba(255, 255, 255, 0.5)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Estimated Monthly Cost</span>
-              <div style={{ fontSize: '3.25rem', fontWeight: 800, color: '#4ade80', margin: '8px 0 4px 0', lineHeight: 1 }}>
-                £{total}
+            {/* Comparative Pricing Output */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              {/* QuickStudy Price */}
+              <div style={{
+                backgroundColor: 'rgba(74, 222, 128, 0.05)',
+                border: '1px solid rgba(74, 222, 128, 0.2)',
+                borderRadius: '16px',
+                padding: '16px',
+                textAlign: 'center'
+              }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#10b981', textTransform: 'uppercase', letterSpacing: '0.05em' }}>QuickStudy Cost</span>
+                <div style={{ fontSize: '2.25rem', fontWeight: 800, color: '#10b981', margin: '4px 0 2px 0', lineHeight: 1 }}>
+                  £{sessions * 18}
+                </div>
+                <span style={{ fontSize: '0.75rem', color: '#94a3b8' }}>£18 / session</span>
               </div>
-              <span style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.4)', display: 'block' }}>
-                *Before discounts (if any)
-              </span>
+
+              {/* Competitor Price */}
+              <div style={{
+                backgroundColor: 'rgba(239, 68, 68, 0.05)',
+                border: '1px solid rgba(239, 68, 68, 0.2)',
+                borderRadius: '16px',
+                padding: '16px',
+                textAlign: 'center'
+              }}>
+                <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#f87171', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Other Tutor Cost</span>
+                <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#ef4444', margin: '8px 0 4px 0', lineHeight: 1 }}>
+                  £{sessions * 30}
+                </div>
+                <span style={{ fontSize: '0.7rem', color: '#94a3b8' }}>at £30 / session rate</span>
+              </div>
             </div>
             
-            {/* Quick selectors for parent ease of use */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {/* Quick presets */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', textAlign: 'left' }}>
               <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'rgba(255, 255, 255, 0.4)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Quick Presets:</span>
               <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                 {[8, 12, 16, 24].map((num) => (
@@ -248,8 +308,8 @@ export default function PricingOverview() {
             </div>
 
           </div>
-
         </div>
+
       </div>
 
       <style>{`
@@ -305,9 +365,6 @@ export default function PricingOverview() {
         }
 
         @media (max-width: 768px) {
-          .pricing-grid {
-            gap: 40px !important;
-          }
           .estimator-card {
             padding: 30px 20px !important;
           }
@@ -316,3 +373,4 @@ export default function PricingOverview() {
     </section>
   );
 }
+

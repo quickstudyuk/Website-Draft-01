@@ -19,7 +19,7 @@ const quickstudyFeatures = [
 ];
 
 const comparisonRows = [
-  { feature: "Learning Plan", traditional: "None / Generic worksheets", qs: "Structured Academic Pathway", icon: "📋" },
+  { feature: "Learning Outcomes", traditional: "None/Generic", qs: "Structured Academic Pathway", icon: "📋" },
   { feature: "Support Beyond Lessons", traditional: "None (starts and ends with the lesson)", qs: "24/7 Complete Support Included", icon: "💬" },
   { feature: "Lesson Recordings", traditional: "No (once the lesson ends, it's gone)", qs: "Yes (recorded and stored forever)", icon: "🎥" },
   { feature: "Progress Tracking", traditional: "Limited (occasional parent feedback)", qs: "Real-time Parent Dashboard", icon: "📊" },
@@ -28,6 +28,8 @@ const comparisonRows = [
 ];
 
 export default function ValueComparison() {
+  const [activeTab, setActiveTab] = React.useState<'traditional' | 'quickstudy'>('quickstudy');
+
   return (
     <section id="how-we-differ" className="section-padding" style={{ 
       background: 'linear-gradient(135deg, #020617 0%, #0f172a 100%)',
@@ -55,7 +57,7 @@ export default function ValueComparison() {
       <div className="container" style={{ maxWidth: '1100px', position: 'relative', zIndex: 1 }}>
         
         {/* Section Header */}
-        <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+        <div style={{ textAlign: 'center', marginBottom: '40px' }}>
           <span style={{
             display: 'inline-block',
             fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase',
@@ -86,6 +88,55 @@ export default function ValueComparison() {
           </p>
         </div>
 
+        {/* Mobile Tab Switcher */}
+        <div className="mobile-tabs-container" style={{
+          display: 'none',
+          justifyContent: 'center',
+          gap: '12px',
+          marginBottom: '24px'
+        }}>
+          <button 
+            onClick={() => setActiveTab('traditional')}
+            style={{
+              flex: 1,
+              maxWidth: '200px',
+              padding: '12px 16px',
+              borderRadius: '100px',
+              border: '1px solid',
+              borderColor: activeTab === 'traditional' ? 'rgba(239, 68, 68, 0.4)' : 'rgba(255, 255, 255, 0.08)',
+              background: activeTab === 'traditional' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(255, 255, 255, 0.02)',
+              color: activeTab === 'traditional' ? '#ef4444' : 'rgba(255, 255, 255, 0.5)',
+              fontSize: '0.9rem',
+              fontWeight: 700,
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              textAlign: 'center'
+            }}
+          >
+            Traditional Tutoring
+          </button>
+          <button 
+            onClick={() => setActiveTab('quickstudy')}
+            style={{
+              flex: 1,
+              maxWidth: '200px',
+              padding: '12px 16px',
+              borderRadius: '100px',
+              border: '1px solid',
+              borderColor: activeTab === 'quickstudy' ? 'rgba(56, 189, 248, 0.5)' : 'rgba(255, 255, 255, 0.08)',
+              background: activeTab === 'quickstudy' ? 'rgba(56, 189, 248, 0.15)' : 'rgba(255, 255, 255, 0.02)',
+              color: activeTab === 'quickstudy' ? '#38bdf8' : 'rgba(255, 255, 255, 0.5)',
+              fontSize: '0.9rem',
+              fontWeight: 700,
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+              textAlign: 'center'
+            }}
+          >
+            QuickStudy Way
+          </button>
+        </div>
+
         {/* Side-by-Side Cards */}
         <div className="comparison-cards-grid" style={{
           display: 'grid',
@@ -95,14 +146,14 @@ export default function ValueComparison() {
           alignItems: 'stretch'
         }}>
           {/* Traditional Card */}
-          <div className="diff-card traditional-diff" style={{
+          <div className={`diff-card traditional-diff ${activeTab === 'traditional' ? 'tab-active' : 'tab-inactive'}`} style={{
             background: 'rgba(255, 255, 255, 0.02)',
             border: '1px solid rgba(239, 68, 68, 0.15)',
-            borderRadius: '24px',
-            padding: '36px',
+            borderRadius: '20px',
+            padding: '28px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '28px',
+            gap: '20px',
             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             position: 'relative',
             backdropFilter: 'blur(12px)',
@@ -114,7 +165,7 @@ export default function ValueComparison() {
               justifyContent: 'space-between'
             }}>
               <div>
-                <h3 style={{ fontSize: '1.45rem', fontWeight: 800, color: 'rgba(255, 255, 255, 0.65)', margin: 0 }}>Traditional Tutoring</h3>
+                <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'rgba(255, 255, 255, 0.65)', margin: 0 }}>Traditional Tutoring</h3>
                 <span style={{ fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.4)', fontWeight: 600 }}>The static approach</span>
               </div>
               <div style={{
@@ -125,7 +176,7 @@ export default function ValueComparison() {
               }}>✗</div>
             </div>
 
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '18px' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {traditionalFeatures.map((feat, idx) => (
                 <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '14px', fontSize: '1.05rem', color: 'rgba(255, 255, 255, 0.55)', lineHeight: 1.4 }}>
                   <span style={{ color: '#ef4444', fontWeight: 700, fontSize: '1.25rem', marginTop: '-2px' }}>✗</span>
@@ -136,14 +187,14 @@ export default function ValueComparison() {
           </div>
 
           {/* QuickStudy Card */}
-          <div className="diff-card quickstudy-diff" style={{
-            background: 'rgba(9, 17, 36, 0.7)',
+          <div className={`diff-card quickstudy-diff ${activeTab === 'quickstudy' ? 'tab-active' : 'tab-inactive'}`} style={{
+            background: 'rgba(21, 32, 54, 0.8)',
             border: '1px solid rgba(56, 189, 248, 0.35)',
-            borderRadius: '24px',
-            padding: '36px',
+            borderRadius: '20px',
+            padding: '28px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '28px',
+            gap: '20px',
             transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
             position: 'relative',
             backdropFilter: 'blur(12px)',
@@ -167,7 +218,7 @@ export default function ValueComparison() {
               justifyContent: 'space-between'
             }}>
               <div>
-                <h3 style={{ fontSize: '1.55rem', fontWeight: 800, color: '#ffffff', margin: 0 }}>QuickStudy Way</h3>
+                <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#ffffff', margin: 0 }}>QuickStudy Way</h3>
                 <span style={{ fontSize: '0.85rem', color: '#38bdf8', fontWeight: 700 }}>The complete ecosystem</span>
               </div>
               <div style={{
@@ -178,7 +229,7 @@ export default function ValueComparison() {
               }}>✓</div>
             </div>
 
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '18px' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {quickstudyFeatures.map((feat, idx) => (
                 <li key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '14px', fontSize: '1.05rem', color: '#ffffff', fontWeight: 500, lineHeight: 1.4 }}>
                   <span style={{ 
@@ -232,8 +283,7 @@ export default function ValueComparison() {
                   borderBottom: idx === comparisonRows.length - 1 ? 'none' : '1px solid rgba(255, 255, 255, 0.06)',
                   transition: 'background-color 0.2s ease'
                 }}>
-                  <td style={{ padding: '18px 24px', color: '#ffffff', fontWeight: 600, fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <span style={{ fontSize: '1.25rem' }}>{row.icon}</span>
+                  <td style={{ padding: '18px 24px', color: '#ffffff', fontWeight: 600, fontSize: '1rem' }}>
                     {row.feature}
                   </td>
                   <td style={{ padding: '18px 24px', color: 'rgba(255, 255, 255, 0.45)', fontSize: '0.95rem' }}>
@@ -246,6 +296,73 @@ export default function ValueComparison() {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile Feature List - visible only on mobile */}
+        <div className="mobile-comparison-list" style={{ 
+          display: 'none', 
+          flexDirection: 'column', 
+          gap: '16px' 
+        }}>
+          {comparisonRows.map((row, idx) => (
+            <div key={idx} style={{
+              background: 'rgba(30, 41, 59, 0.65)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              borderRadius: '16px',
+              padding: '12px 14px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px'
+            }}>
+              <div style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.06)', paddingBottom: '8px', textAlign: 'center' }}>
+                <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#ffffff', margin: 0 }}>{row.feature}</h4>
+              </div>
+              
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                {/* Traditional */}
+                <div style={{ 
+                  background: 'rgba(239, 68, 68, 0.03)',
+                  border: '1px solid rgba(239, 68, 68, 0.1)',
+                  borderRadius: '10px',
+                  padding: '10px 8px',
+                  fontSize: '0.78rem',
+                  color: 'rgba(255, 255, 255, 0.65)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '4px',
+                  textAlign: 'left'
+                }}>
+                  <span style={{ display: 'block', fontSize: '0.65rem', textTransform: 'uppercase', color: '#ef4444', fontWeight: 800 }}>
+                    <span style={{ color: '#ef4444', marginRight: '4px' }}>✗</span>Traditional
+                  </span>
+                  <div style={{ lineHeight: '1.3' }}>
+                    {row.traditional}
+                  </div>
+                </div>
+
+                {/* QuickStudy */}
+                <div style={{ 
+                  background: 'rgba(56, 189, 248, 0.04)',
+                  border: '1px solid rgba(56, 189, 248, 0.2)',
+                  borderRadius: '10px',
+                  padding: '10px 8px',
+                  fontSize: '0.78rem',
+                  color: '#ffffff',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '4px',
+                  textAlign: 'left'
+                }}>
+                  <span style={{ display: 'block', fontSize: '0.65rem', textTransform: 'uppercase', color: '#38bdf8', fontWeight: 800 }}>
+                    <span style={{ color: '#10b981', marginRight: '4px' }}>✓</span>QuickStudy
+                  </span>
+                  <div style={{ lineHeight: '1.3' }}>
+                    {row.qs}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
       </div>
@@ -266,12 +383,25 @@ export default function ValueComparison() {
           background-color: rgba(255, 255, 255, 0.02);
         }
         @media (max-width: 768px) {
+          .mobile-tabs-container {
+            display: flex !important;
+          }
+          .diff-card.tab-inactive {
+            display: none !important;
+          }
           .comparison-cards-grid {
+            grid-template-columns: 1fr !important;
             gap: 20px !important;
             margin-bottom: 50px !important;
           }
           .diff-card {
             padding: 24px !important;
+          }
+          .comparison-table-wrapper {
+            display: none !important;
+          }
+          .mobile-comparison-list {
+            display: flex !important;
           }
         }
       `}</style>

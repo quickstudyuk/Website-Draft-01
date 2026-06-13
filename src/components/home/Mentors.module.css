@@ -114,3 +114,34 @@
   background-color: #1e3a8a;
   transform: scale(1.3);
 }
+
+@media (max-width: 767px) {
+  .mentorCard {
+    border-radius: 16px !important;
+  }
+  .imageContainer {
+    aspect-ratio: 16 / 10 !important;
+  }
+  .mentorInfo {
+    padding: 12px 10px !important;
+  }
+  .mentorName {
+    font-size: 0.95rem !important;
+    margin-bottom: 2px !important;
+  }
+  .mentorSubjects {
+    font-size: 0.78rem !important;
+    margin-bottom: 2px !important;
+  }
+  .mentorCertification {
+    font-size: 0.72rem !important;
+    margin-bottom: 2px !important;
+  }
+  .mentorExperience {
+    font-size: 0.78rem !important;
+    margin-top: 2px !important;
+  }
+  .carouselContainer {
+    padding: 8px 0 !important;
+  }
+}

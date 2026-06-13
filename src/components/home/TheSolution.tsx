@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 
 interface LearningStep {
   id: number;
@@ -78,6 +78,12 @@ const stepsData: LearningStep[] = [
 ];
 
 export default function TheSolution() {
+  const [flippedCards, setFlippedCards] = useState<Record<number, boolean>>({});
+
+  const handleCardClick = (id: number) => {
+    setFlippedCards(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
   return (
     <section className="unified-solution-section">
       <div className="unified-container">
@@ -92,26 +98,55 @@ export default function TheSolution() {
         {/* 4 Columns Grid */}
         <div className="unified-grid">
           {stepsData.map((step) => (
-            <div key={step.id} className="unified-card">
-              
-              {/* Top Pill Badge */}
-              <div className="card-badge-wrapper">
-                <span className="card-badge">{step.category}</span>
-              </div>
+            <div 
+              key={step.id} 
+              className={`unified-card ${flippedCards[step.id] ? 'flipped' : ''}`}
+              onClick={() => handleCardClick(step.id)}
+            >
+              <div className="unified-card-inner">
+                
+                {/* Front Side */}
+                <div className="unified-card-front">
+                  {/* Top Pill Badge */}
+                  <div className="card-badge-wrapper">
+                    <span className="card-badge">{step.category}</span>
+                  </div>
 
-              {/* Center Icon */}
-              <div className="card-icon-container">
-                <div className="card-icon-wrapper">
-                  {step.svgIcon}
+                  {/* Icon */}
+                  <div className="card-icon-container">
+                    <div className="card-icon-wrapper">
+                      {step.svgIcon}
+                    </div>
+                  </div>
+
+                  {/* Title & Description */}
+                  <div className="card-text-container">
+                    <h3 className="card-main-title">{step.title}</h3>
+                    <p className="card-details-desc desktop-desc">{step.description}</p>
+                  </div>
+
+                  {/* Tap hint */}
+                  <div className="mobile-tap-hint">
+                    Tap to view more
+                  </div>
                 </div>
-              </div>
 
-              {/* Text Writing (Title & Description) */}
-              <div className="card-text-container">
-                <h3 className="card-main-title">{step.title}</h3>
-                <p className="card-details-desc">{step.description}</p>
-              </div>
+                {/* Back Side: Renders ONLY details text centered perfectly */}
+                <div className="unified-card-back">
+                  
+                  {/* Description Centered vertically & horizontally */}
+                  <div className="card-text-container" style={{ margin: 'auto 0', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+                    <p className="card-details-desc" style={{ color: '#ffffff', opacity: 0.95, margin: 0, fontSize: '0.72rem', lineHeight: 1.45, textAlign: 'center' }}>
+                      {step.description}
+                    </p>
+                  </div>
 
+                  <div className="mobile-tap-hint" style={{ color: '#10b981' }}>
+                    Tap to flip back
+                  </div>
+                </div>
+
+              </div>
             </div>
           ))}
         </div>
@@ -251,6 +286,176 @@ export default function TheSolution() {
           color: #94a3b8; /* Muted grey-blue detail text */
           line-height: 1.6;
           margin: 0;
+        }
+
+        /* Flippable Card Base Layout Styles */
+        .unified-card-inner {
+          width: 100%;
+          height: 100%;
+        }
+
+        .unified-card-front {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+        }
+
+        .unified-card-back {
+          display: none !important;
+        }
+
+        .mobile-tap-hint {
+          display: none;
+        }
+
+        /* Mobile specific card overrides */
+        @media (max-width: 767px) {
+          .unified-solution-section {
+            padding: 24px 0 60px 0 !important;
+          }
+          .unified-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+          }
+          .unified-card {
+            perspective: 1000px !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            min-height: 140px !important;
+            height: 150px !important;
+            cursor: pointer !important;
+          }
+          .unified-card-inner {
+            position: relative !important;
+            width: 100% !important;
+            height: 100% !important;
+            transform-style: preserve-3d !important;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) !important;
+          }
+          .unified-card.flipped .unified-card-inner {
+            transform: rotateY(180deg) !important;
+          }
+          .unified-card-front, .unified-card-back {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            -webkit-backface-visibility: hidden !important;
+            backface-visibility: hidden !important;
+            border-radius: 20px !important;
+            padding: 16px 12px !important;
+            box-sizing: border-box !important;
+            display: flex !important;
+            flex-direction: column !important;
+          }
+          .unified-card-front {
+            background: linear-gradient(135deg, #10204c 0%, #070d22 100%) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            box-shadow: 0 10px 25px rgba(10, 20, 50, 0.25) !important;
+            z-index: 2 !important;
+            transform: rotateY(0deg) !important;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+            position: relative !important;
+          }
+          .unified-card-back {
+            background: linear-gradient(135deg, #070d22 0%, #10204c 100%) !important;
+            border: 1.5px solid rgba(16, 185, 129, 0.35) !important;
+            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.15) !important;
+            transform: rotateY(180deg) !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
+          }
+          .desktop-desc {
+            display: none !important;
+          }
+          .mobile-tap-hint {
+            display: block !important;
+            font-size: 0.65rem !important;
+            font-weight: 800 !important;
+            text-transform: uppercase;
+            letter-spacing: 0.04em !important;
+            color: #38bdf8 !important;
+            opacity: 0.5 !important; /* Transparent / less highlighted */
+            position: absolute !important;
+            bottom: 12px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            margin: 0 !important;
+            width: 100% !important;
+            text-align: center !important;
+          }
+          .unified-card-back .mobile-tap-hint {
+            position: absolute !important;
+            bottom: 4px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            font-size: 0.5rem !important;
+            margin: 0 !important;
+          }
+          
+          .card-badge-wrapper {
+            position: absolute !important;
+            top: 14px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            margin: 0 !important;
+          }
+          .card-badge {
+            font-size: 0.58rem !important;
+            padding: 2px 8px !important;
+          }
+          .card-icon-container {
+            position: absolute !important;
+            left: 50% !important;
+            top: 50% !important;
+            transform: translate(-50%, -50%) !important; /* Centered behind text */
+            margin-bottom: 0 !important;
+            right: auto !important;
+            bottom: auto !important;
+            z-index: 0 !important;
+            pointer-events: none !important;
+          }
+          .card-icon-wrapper {
+            width: 90px !important;
+            height: 90px !important;
+            border: none !important;
+            background: transparent !important;
+            box-shadow: none !important;
+            opacity: 0.04 !important; /* More transparent shaded watermark */
+          }
+          .card-icon-wrapper svg {
+            width: 80px !important;
+            height: 80px !important;
+          }
+          .card-text-container {
+            position: relative !important;
+            z-index: 1 !important;
+            gap: 4px !important;
+            text-align: center !important;
+            align-items: center !important;
+            margin: 0 !important;
+          }
+          .card-main-title {
+            font-size: 0.95rem !important;
+            font-weight: 800 !important;
+            text-align: center !important;
+          }
+          .card-details-desc {
+            font-size: 0.72rem !important;
+            line-height: 1.45 !important;
+            color: #cbd5e1 !important;
+            text-align: center !important;
+          }
         }
       `}</style>
     </section>

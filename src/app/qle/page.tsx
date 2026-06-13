@@ -11,6 +11,7 @@ import ProgressTracking from '@/components/qle/ProgressTracking';
 import QLEBenefits from '@/components/qle/QLEBenefits';
 import QLEJourney from '@/components/qle/QLEJourney';
 import HeroDiagnosticTest from '@/components/home/HeroDiagnosticTest';
+import EverythingInOnePlace from '@/components/qle/EverythingInOnePlace';
 
 export const metadata = {
   title: 'QuickStudy Learning Environment | Complete Academic System',
@@ -26,8 +27,10 @@ export default function QLEPage() {
       <TraditionalVsQLE />
       {/* 3. Session Library — dark */}
       <SessionLibrary />
+      {/* Mobile-only compressed section */}
+      <EverythingInOnePlace />
       {/* 4 & 5. AI Summaries & Revision Generator — combined dark background */}
-      <div style={{
+      <div className="mobile-hide" style={{
         background: 'linear-gradient(135deg, #020617 0%, #0f172a 80%, #0d1f3c 100%)',
         position: 'relative',
         overflow: 'hidden'
@@ -44,13 +47,21 @@ export default function QLEPage() {
         <RevisionGenerator />
       </div>
       {/* 6. Digital Whiteboard — dark */}
-      <DigitalWhiteboard />
+      <div className="mobile-hide">
+        <DigitalWhiteboard />
+      </div>
       {/* 7. Mentor Chat — light */}
-      <MentorChat />
+      <div className="mobile-hide">
+        <MentorChat />
+      </div>
       {/* 8. Parent Dashboard — dark */}
-      <ParentDashboard />
+      <div className="mobile-hide">
+        <ParentDashboard />
+      </div>
       {/* 9. Progress Tracking — dark */}
-      <ProgressTracking />
+      <div className="mobile-hide">
+        <ProgressTracking />
+      </div>
       {/* 10. Benefits — light (moved up) */}
       <QLEBenefits />
       {/* 11. Journey — dark (moved down, swapped) */}

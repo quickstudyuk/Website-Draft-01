@@ -1,6 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { setLearningProfileResult, getLearningProfileResult } from './LearningProfileStore';
+
 
 // ─── Question Definitions ──────────────────────────────────────────────────────
 const questions = [
@@ -242,6 +244,35 @@ export default function HeroDiagnosticTest() {
   const [emailSent, setEmailSent] = useState(false);
   const [result, setResult] = useState<DiagnosticResult | null>(null);
 
+  useEffect(() => {
+    const cached = getLearningProfileResult();
+    if (cached) {
+      setResult(cached);
+      setIsDone(true);
+    }
+    
+    // Subscribe to store updates to sync if reset from outside
+    const checkUpdates = () => {
+      const current = getLearningProfileResult();
+      if (!current) {
+        setStep(0);
+        setAnswers({});
+        setEmail('');
+        setEmailSent(false);
+        setIsDone(false);
+        setResult(null);
+      } else {
+        setResult(current);
+        setIsDone(true);
+      }
+    };
+    
+    window.addEventListener('qs_profile_reset', checkUpdates);
+    return () => {
+      window.removeEventListener('qs_profile_reset', checkUpdates);
+    };
+  }, []);
+
   const questionKeys = ['yearGroup', 'subject', 'confidence', 'challenge', 'lastGrade', 'currentSupport', 'studyHabits'] as const;
   const totalSteps = questions.length; // 8 (7 Q + email)
 
@@ -260,6 +291,7 @@ export default function HeroDiagnosticTest() {
     setTimeout(() => {
       const computed = analyseAnswers(answers);
       setResult(computed);
+      setLearningProfileResult(computed);
       setEmailSent(true);
       setIsGenerating(false);
       setIsDone(true);
@@ -273,7 +305,9 @@ export default function HeroDiagnosticTest() {
     setEmailSent(false);
     setIsDone(false);
     setResult(null);
+    setLearningProfileResult(null);
     setIsGenerating(false);
+    window.dispatchEvent(new Event('qs_profile_reset'));
   };
 
   const scrollToGetStarted = () => {

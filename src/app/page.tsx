@@ -9,6 +9,8 @@ import ConsultationTrial from '@/components/home/ConsultationTrial';
 import Testimonials from '@/components/home/Testimonials';
 
 import Mentors from '@/components/home/Mentors';
+import MobileBottomResults from '@/components/home/MobileBottomResults';
+
 
 export const metadata = {
   title: 'QuickStudy | A Smarter Way To Help Your Child Succeed',
@@ -17,16 +19,18 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main>
-      <HeroSection />
-      <ParentVideos />
-      <ParentStruggles />
-      <TheSolution />
-      <QLEPreview />
-      <ResultsOutcomes />
-      <ConsultationTrial />
-      <Mentors />
-      <Testimonials />
+    <main className="homepage-main-container">
+      <div className="section-hero"><HeroSection /></div>
+      <div className="section-videos"><ParentVideos /></div>
+      <div className="section-struggles"><ParentStruggles /></div>
+      <div className="section-solution"><TheSolution /></div>
+      <div className="section-qle"><QLEPreview /></div>
+      <div className="section-results"><ResultsOutcomes /></div>
+      <div className="section-consultation"><ConsultationTrial /></div>
+      <div className="section-mentors"><Mentors /></div>
+      <div className="section-testimonials"><Testimonials /></div>
+      <div className="section-bottom-results"><MobileBottomResults /></div>
     </main>
+
   );
 }

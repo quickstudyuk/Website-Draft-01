@@ -72,22 +72,22 @@ export default function SupportExamples() {
         
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-          gap: '24px', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', 
+          gap: '20px', 
           maxWidth: '1100px', 
           margin: '0 auto' 
         }}>
           {examples.map((ex, idx) => (
             <div key={idx} style={{ 
-              padding: '32px 24px', 
+              padding: '24px 20px', 
               display: 'flex', 
               flexDirection: 'column', 
-              gap: '16px',
+              gap: '12px',
               background: ex.highlight ? 'linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%)' : 'rgba(224, 242, 254, 0.35)', 
               backdropFilter: ex.highlight ? 'none' : 'blur(12px)',
               WebkitBackdropFilter: ex.highlight ? 'none' : 'blur(12px)',
               border: ex.highlight ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(186, 230, 253, 0.6)',
-              borderRadius: '24px',
+              borderRadius: '20px',
               boxShadow: ex.highlight ? '0 15px 35px -5px rgba(30, 58, 138, 0.3)' : '0 10px 30px -10px rgba(56, 189, 248, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.8)',
               transition: 'transform 0.3s ease, box-shadow 0.3s ease',
               position: 'relative'
@@ -113,9 +113,9 @@ export default function SupportExamples() {
                 </div>
               )}
               
-              <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: ex.highlight ? '#ffffff' : '#0f172a', margin: 0 }}>{ex.title}</h3>
+              <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: ex.highlight ? '#ffffff' : '#0f172a', margin: 0 }}>{ex.title}</h3>
               <div style={{ 
-                fontSize: '0.95rem', fontWeight: 700, 
+                fontSize: '0.85rem', fontWeight: 700, 
                 color: ex.highlight ? '#38bdf8' : '#0284c7', 
                 backgroundColor: ex.highlight ? 'rgba(56, 189, 248, 0.15)' : 'rgba(2, 132, 199, 0.1)', 
                 padding: '8px 16px', borderRadius: '8px', 
@@ -124,9 +124,9 @@ export default function SupportExamples() {
                 Recommended: {ex.freq}
               </div>
               
-              <div style={{ marginTop: 'auto', paddingTop: '16px', borderTop: ex.highlight ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(148, 163, 184, 0.2)' }}>
-                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: ex.highlight ? '#94a3b8' : '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '8px' }}>Ideal for:</span>
-                <p style={{ fontSize: '1.05rem', color: ex.highlight ? 'rgba(255, 255, 255, 0.9)' : '#334155', margin: 0, lineHeight: 1.5 }}>{ex.idealFor}</p>
+              <div style={{ marginTop: 'auto', paddingTop: '12px', borderTop: ex.highlight ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(148, 163, 184, 0.2)' }}>
+                <span style={{ fontSize: '0.8rem', fontWeight: 700, color: ex.highlight ? '#94a3b8' : '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', display: 'block', marginBottom: '6px' }}>Ideal for:</span>
+                <p style={{ fontSize: '0.95rem', color: ex.highlight ? 'rgba(255, 255, 255, 0.9)' : '#334155', margin: 0, lineHeight: 1.4 }}>{ex.idealFor}</p>
               </div>
             </div>
           ))}

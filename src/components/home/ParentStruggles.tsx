@@ -17,12 +17,12 @@ interface StruggleCard {
 const cardData: StruggleCard[] = [
   {
     id: 1,
-    badgeText: "Regular Parent Updates",
-    problemTitle: "PARENTS UNSURE IF PROGRESS IS MADE",
-    problemDesc: "No feedback on what was learned, where the gaps are, or if it is worth the money.",
-    solutionTitle: "Live Parent Dashboard",
-    solutionDesc: "Real-time updates, lesson playback, comprehensive reports, and projected improvement mapping.",
-    accentColor: "#10b981", // Success Green
+    badgeText: "Updates & Support",
+    problemTitle: "PARENTS UNSURE OF PROGRESS & SUPPORT",
+    problemDesc: "No feedback on learning gaps, and tutors who only help with homework without building a foundation.",
+    solutionTitle: "Live Dashboard & Mentoring",
+    solutionDesc: "Real-time updates, lesson playback, comprehensive reports, and dedicated 1-on-1 milestone tracking.",
+    accentColor: "#10b981",
     svgIcon: (
       <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
@@ -47,7 +47,7 @@ const cardData: StruggleCard[] = [
     problemDesc: "Struggling to keep pace with classroom teaching and missing foundational concepts.",
     solutionTitle: "Personalised Study Plans",
     solutionDesc: "Tailored curriculums that close foundational gaps first, helping them catch up and get ahead.",
-    accentColor: "#ef4444", // Red/Coral for urgency
+    accentColor: "#ef4444",
     svgIcon: (
       <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M3 3v18h18" />
@@ -67,12 +67,12 @@ const cardData: StruggleCard[] = [
   },
   {
     id: 3,
-    badgeText: "Confidence Issue",
-    problemTitle: "LOW CONFIDENCE IN LEARNING",
-    problemDesc: "Afraid of making mistakes, speaking up in class, or tackling difficult homework.",
-    solutionTitle: "Immediate Wins & Guidance",
-    solutionDesc: "Bite-sized micro-goals with positive feedback loops that turn anxiety into curiosity.",
-    accentColor: "#f59e0b", // Amber/Yellow
+    badgeText: "Confidence & Anxiety",
+    problemTitle: "LOW CONFIDENCE & EXAM ANXIETY",
+    problemDesc: "Afraid of making mistakes, speaking up in class, or freezing under exam pressure.",
+    solutionTitle: "Bite-Sized Goals & Wins",
+    solutionDesc: "Micro-goals with positive feedback loops that turn exam anxiety into learning curiosity.",
+    accentColor: "#f59e0b",
     svgIcon: (
       <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1 .3 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
@@ -97,12 +97,12 @@ const cardData: StruggleCard[] = [
   },
   {
     id: 4,
-    badgeText: "Revision Structure",
-    problemTitle: "NOT KNOWING WHAT TO REVISE",
-    problemDesc: "Feeling overwhelmed by the curriculum and wasting hours revising the wrong things.",
-    solutionTitle: "Structured Lesson Recaps",
-    solutionDesc: "Crystal clear focus lists generated automatically from class insights so they know exactly what to study.",
-    accentColor: "#3b82f6", // Blue
+    badgeText: "Revision & Strategy",
+    problemTitle: "POOR TECHNIQUE & STUDY HABITS",
+    problemDesc: "Feeling overwhelmed, wasting hours revising the wrong things, and failing to secure marks.",
+    solutionTitle: "Structured Recaps & Technique",
+    solutionDesc: "Lesson recaps generating clear focus lists, and past paper practice with examiner tips.",
+    accentColor: "#3b82f6",
     svgIcon: (
       <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10Z" />
@@ -118,65 +118,35 @@ const cardData: StruggleCard[] = [
         <path d="M8 18h8" />
       </svg>
     )
-  },
-  {
-    id: 5,
-    badgeText: "Exam Strategy",
-    problemTitle: "POOR PERFORMANCE DESPITE EFFORT",
-    problemDesc: "Studying for hours but failing to achieve high marks due to poor exam technique.",
-    solutionTitle: "Targeted Exam Technique",
-    solutionDesc: "Practising with real past papers under exam conditions with instant marker-level tips.",
-    accentColor: "#8b5cf6", // Purple
-    svgIcon: (
-      <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-        <path d="M14 2v6h6" />
-        <path d="M16 13H8" />
-        <path d="M16 17H8" />
-        <path d="M10 9H8" />
-        <path d="m4 12 4-2" stroke="red" strokeWidth="2" />
-        <path d="m18 16 2-2" stroke="red" strokeWidth="2" />
-      </svg>
-    ),
-    solIcon: (
-      <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="rgba(34, 197, 94, 0.1)" />
-        <path d="M14 2v6h6" />
-        <path d="m9 15 2 2 4-4" stroke="var(--success)" />
-        <text x="14" y="14" fill="var(--success)" fontSize="8" fontWeight="bold" fontFamily="sans-serif">A+</text>
-      </svg>
-    )
-  },
-  {
-    id: 6,
-    badgeText: "Academic Support",
-    problemTitle: "LACK OF STRUCTURED ACADEMIC SUPPORT",
-    problemDesc: "Tutors who just help with homework instead of building a structured foundation.",
-    solutionTitle: "1-on-1 Dedicated Support",
-    solutionDesc: "Continuous mentoring, regular check-ins, and step-by-step progress towards key milestones.",
-    accentColor: "#06b6d4", // Cyan
-    svgIcon: (
-      <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 21h18" />
-        <path d="M5 21V10" />
-        <path d="M9 21V14" />
-        <path d="M13 21V12" />
-        <path d="M17 21V8" />
-        <path d="M5 10c.5-2 2-3 4-2" strokeDasharray="2 2" />
-        <path d="M13 12c.5-2 2-3 4-2" strokeDasharray="2 2" />
-      </svg>
-    ),
-    solIcon: (
-      <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 21h18" />
-        <rect x="5" y="13" width="3" height="8" fill="var(--primary)" opacity="0.3" />
-        <rect x="10" y="9" width="3" height="12" fill="var(--primary)" opacity="0.6" />
-        <rect x="15" y="5" width="3" height="16" fill="var(--primary)" />
-        <path d="m7 10 5-4 5-2" fill="none" stroke="var(--accent)" strokeWidth="3" />
-      </svg>
-    )
   }
 ];
+
+const mobileTexts: Record<number, { problemTitle: string; problemDesc: string; solutionTitle: string; solutionDesc: string }> = {
+  1: {
+    problemTitle: "UNSURE OF PROGRESS",
+    problemDesc: "No learning updates, only homework help.",
+    solutionTitle: "Dashboard & Mentoring",
+    solutionDesc: "Real-time tracking and dedicated milestones."
+  },
+  2: {
+    problemTitle: "FALLING BEHIND",
+    problemDesc: "Struggling to keep pace and missing core concepts.",
+    solutionTitle: "Personalised Plans",
+    solutionDesc: "Tailored plans that close foundational gaps first."
+  },
+  3: {
+    problemTitle: "LOW CONFIDENCE",
+    problemDesc: "Fear of mistakes, speaking up, or exam pressure.",
+    solutionTitle: "Bite-Sized Wins",
+    solutionDesc: "Micro-goals and positive loops to build confidence."
+  },
+  4: {
+    problemTitle: "POOR EXAM TECHNIQUE",
+    problemDesc: "Overwhelmed, revising the wrong topics.",
+    solutionTitle: "Recaps & Technique",
+    solutionDesc: "Focus lists and past paper marker tips."
+  }
+};
 
 export default function ParentStruggles() {
   const [flippedCards, setFlippedCards] = useState<Record<number, boolean>>({});
@@ -239,58 +209,106 @@ export default function ParentStruggles() {
             margin: '0 auto var(--spacing-12) auto',
             lineHeight: 1.6
           }}>
-            Hover or tap any challenge below to see how QuickStudy converts academic frustration into structured success.
+            See how QuickStudy converts academic frustration into structured success.
           </p>
           
           <div className="struggles-grid">
             {cardData.map((card) => (
-              <div 
-                key={card.id} 
-                data-id={card.id}
-                className={`flip-card ${flippedCards[card.id] ? 'flipped' : ''}`}
-                onClick={() => handleCardClick(card.id)}
-              >
-                <div className="flip-card-inner">
-                  {/* Front Side: Problem */}
-                  <div className="flip-card-front" style={{ borderTop: `4px solid ${card.accentColor}` }}>
-                    <div className="card-badge" style={{ color: card.accentColor, borderColor: `${card.accentColor}30` }}>
-                      {card.badgeText}
+              <React.Fragment key={card.id}>
+                
+                {/* Desktop/Tablet Only: Flipped Cards */}
+                <div 
+                  data-id={card.id}
+                  className={`flip-card desktop-struggle-card ${flippedCards[card.id] ? 'flipped' : ''}`}
+                  onClick={() => handleCardClick(card.id)}
+                >
+                  <div className="flip-card-inner">
+                    {/* Front Side: Problem (Dark Red themed headings & frames) */}
+                    <div className="flip-card-front" style={{ borderTop: '4px solid #f87171' }}>
+                      <div className="card-badge" style={{ color: '#fca5a5', borderColor: 'rgba(252, 165, 165, 0.25)', backgroundColor: 'rgba(252, 165, 165, 0.1)' }}>
+                        {card.badgeText}
+                      </div>
+                      <div className="icon-wrapper" style={{ color: '#fca5a5', backgroundColor: 'rgba(252, 165, 165, 0.1)' }}>
+                        {card.svgIcon}
+                      </div>
+                      <h3 className="card-title" style={{ color: '#fca5a5' }}>{card.problemTitle}</h3>
+                      <p className="card-desc" style={{ color: '#fecaca' }}>{card.problemDesc}</p>
+                      <span className="mobile-tap-hint" style={{ color: '#fca5a5' }}>Tap to Reveal Solution</span>
                     </div>
-                    <div className="icon-wrapper" style={{ color: card.accentColor, backgroundColor: `${card.accentColor}08` }}>
-                      {card.svgIcon}
-                    </div>
-                    <h3 className="card-title">{card.problemTitle}</h3>
-                    <p className="card-desc">{card.problemDesc}</p>
-                    <span className="mobile-tap-hint">Tap to Reveal Solution</span>
-                  </div>
 
-                  {/* Back Side: Solution */}
-                  <div className="flip-card-back">
-                    <div className="card-badge success-badge">
-                      QUICKSTUDY SOLUTION
+                    {/* Back Side: Solution */}
+                    <div className="flip-card-back">
+                      <div className="card-badge success-badge">
+                        QUICKSTUDY SOLUTION
+                      </div>
+                      <div className="icon-wrapper success-icon">
+                        {card.solIcon}
+                      </div>
+                      <h3 className="card-title success-title">{card.solutionTitle}</h3>
+                      <p className="card-desc success-desc">{card.solutionDesc}</p>
                     </div>
-                    <div className="icon-wrapper success-icon">
-                      {card.solIcon}
-                    </div>
-                    <h3 className="card-title success-title">{card.solutionTitle}</h3>
-                    <p className="card-desc success-desc">{card.solutionDesc}</p>
                   </div>
                 </div>
-              </div>
+
+                {/* Mobile Only: 2-column layout (Left card = Problem reddish shade, Right card = Solution greenish shade, Arrow in between) */}
+                <React.Fragment>
+                  {/* Left Column: Problem Card (Dark Red themed headings & frames) */}
+                  <div className="mobile-struggle-card-wrapper mobile-problem-card-wrapper">
+                    <div className="mobile-struggle-card mobile-problem-card" style={{ borderTop: '4px solid #f87171' }}>
+                      <div className="card-badge" style={{ color: '#fca5a5', borderColor: 'rgba(252, 165, 165, 0.25)', backgroundColor: 'rgba(252, 165, 165, 0.1)', alignSelf: 'center', margin: '0 0 8px 0', fontSize: '0.6rem', padding: '1px 6px' }}>
+                        {card.badgeText}
+                      </div>
+                      
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: 1, justifyContent: 'center' }}>
+                        <h4 style={{ margin: 0, fontSize: '0.8rem', fontWeight: 900, color: '#fca5a5', lineHeight: 1.2 }}>
+                          {mobileTexts[card.id].problemTitle}
+                        </h4>
+                        <p style={{ margin: 0, fontSize: '0.68rem', color: '#fecaca', opacity: 0.9, lineHeight: 1.35 }}>
+                          {mobileTexts[card.id].problemDesc}
+                        </p>
+                      </div>
+
+                      {/* Right-pointing Arrow positioned absolutely on the right center edge of the card */}
+                      <div className="mobile-card-arrow" style={{ color: '#fca5a5', borderColor: 'rgba(255, 255, 255, 0.1)' }}>
+                        →
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Solution Card */}
+                  <div className="mobile-struggle-card-wrapper mobile-solution-card-wrapper">
+                    <div className="mobile-struggle-card mobile-solution-card">
+                      <div className="card-badge" style={{ color: '#10b981', borderColor: 'rgba(16, 185, 129, 0.2)', backgroundColor: 'rgba(16, 185, 129, 0.05)', alignSelf: 'center', margin: '0 0 8px 0', fontSize: '0.6rem', padding: '1px 6px' }}>
+                        QuickStudy Solution
+                      </div>
+                      
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', flex: 1, justifyContent: 'center' }}>
+                        <h4 style={{ margin: 0, fontSize: '0.8rem', fontWeight: 900, color: '#065f46', lineHeight: 1.2 }}>
+                          {mobileTexts[card.id].solutionTitle}
+                        </h4>
+                        <p style={{ margin: 0, fontSize: '0.68rem', color: '#064e3b', opacity: 0.9, lineHeight: 1.35, fontWeight: 500 }}>
+                          {mobileTexts[card.id].solutionDesc}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </React.Fragment>
+
+              </React.Fragment>
             ))}
           </div>
           
           <div style={{ marginTop: 'var(--spacing-12)' }}>
             <p style={{ 
               fontSize: 'clamp(1.25rem, 3vw, 1.6rem)', 
-              color: 'var(--primary)', 
+              color: '#10b981', 
               fontWeight: 800,
               letterSpacing: '-0.01em',
               display: 'inline-block',
               padding: '12px 32px',
-              backgroundColor: 'rgba(30, 58, 138, 0.04)',
+              backgroundColor: 'rgba(16, 185, 129, 0.04)',
               borderRadius: '9999px',
-              border: '1px dashed rgba(30, 58, 138, 0.15)'
+              border: '1px dashed rgba(16, 185, 129, 0.15)'
             }}>
               QuickStudy was built to solve exactly these problems.
             </p>
@@ -363,11 +381,9 @@ export default function ParentStruggles() {
         }
 
         .flip-card-front {
-          background: rgba(224, 242, 254, 0.35);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border: 1px solid rgba(186, 230, 253, 0.45);
-          box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.8);
+          background: linear-gradient(135deg, #10204c 0%, #070d22 100%);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          box-shadow: 0 20px 40px -15px rgba(10, 20, 50, 0.25);
         }
 
         .flip-card-back {
@@ -449,26 +465,90 @@ export default function ParentStruggles() {
           display: none;
         }
 
-        @media (max-width: 768px) {
-          .mobile-tap-hint {
-            display: block;
-            font-size: 0.75rem;
-            color: #0284c7;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
+        /* Mobile specific layout */
+        @media (max-width: 767px) {
+          .mobile-struggle-card-wrapper {
+            display: block !important;
+          }
+          .desktop-struggle-card {
+            display: none !important;
+          }
+          .struggles-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+          }
+          
+          /* Light theme card base */
+          .mobile-struggle-card {
+            border-radius: 16px;
+            padding: 8px 6px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            min-height: 110px;
+            height: 125px !important; /* Forces 125px height */
+            box-sizing: border-box;
+            text-align: left;
+            position: relative;
+          }
+
+          /* Problem card: dark shade */
+          .mobile-problem-card {
+            background: linear-gradient(135deg, #10204c 0%, #070d22 100%) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            box-shadow: 0 4px 12px rgba(10, 20, 50, 0.25) !important;
+          }
+
+          /* Solution card: greenish shade */
+          .mobile-solution-card {
+            background: rgba(209, 250, 229, 0.55) !important;
+            border: 1.5px solid rgba(16, 185, 129, 0.25) !important;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.03) !important;
+            border-top: 4px solid #10b981 !important;
+          }
+
+          /* Left-to-right arrow overlay on problem card */
+          .mobile-card-arrow {
             position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            text-align: center;
+            right: -11px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #070d22;
+            border: 1px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+            color: #ef4444;
+            font-size: 10px;
+            font-weight: bold;
+            pointer-events: none;
           }
-          .flip-card-front {
-            padding-bottom: 48px;
+        }
+
+        @media (min-width: 1024px) {
+          .struggles-grid {
+            grid-template-columns: repeat(4, 1fr) !important; /* 4 columns on desktop */
           }
-          .flip-card {
-            height: 380px;
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .struggles-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+
+        @media (min-width: 768px) {
+          .mobile-struggle-card-wrapper {
+            display: none !important;
+          }
+          .desktop-struggle-card {
+            display: block !important;
           }
         }
       `}</style>

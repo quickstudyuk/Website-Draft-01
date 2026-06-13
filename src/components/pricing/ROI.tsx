@@ -59,7 +59,7 @@ export default function ROI() {
           </h2>
         </div>
         
-        <div style={{ 
+        <div className="roi-grid-container" style={{ 
           display: 'grid', 
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
           gap: '24px', 
@@ -67,7 +67,7 @@ export default function ROI() {
           margin: '0 auto' 
         }}>
           {outcomes.map((outcome, idx) => (
-            <div key={idx} style={{ 
+            <div key={idx} className="roi-card" style={{ 
               padding: '24px', 
               textAlign: 'center', 
               background: 'rgba(9, 17, 36, 0.95)', 
@@ -90,13 +90,35 @@ export default function ROI() {
               e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
             }}
             >
-              <span style={{ fontSize: '1.15rem', fontWeight: 800, color: '#38bdf8' }}>
+              <span className="roi-card-text" style={{ fontSize: '1.15rem', fontWeight: 800, color: '#38bdf8' }}>
                 {outcome}
               </span>
             </div>
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .roi-grid-container {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+          }
+          .roi-card {
+            padding: 16px 10px !important;
+            border-radius: 16px !important;
+          }
+          .roi-card-text {
+            font-size: 0.95rem !important;
+          }
+          .roi-card:nth-child(2),
+          .roi-card:nth-child(3),
+          .roi-card:nth-child(6) {
+            background: rgba(56, 189, 248, 0.08) !important;
+            border-color: rgba(56, 189, 248, 0.3) !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

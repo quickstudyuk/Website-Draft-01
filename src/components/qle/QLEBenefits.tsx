@@ -73,15 +73,18 @@ export default function QLEBenefits() {
         </div>
 
         {/* Benefit cards */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-          gap: '20px',
-          maxWidth: '1100px',
-          margin: '0 auto'
-        }}>
+        <div 
+          className="benefits-grid-layout"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: '20px',
+            maxWidth: '1100px',
+            margin: '0 auto'
+          }}
+        >
           {benefits.map((b, idx) => (
-            <div key={idx} style={{
+            <div key={idx} className="benefit-card-item" style={{
               background: 'rgba(9, 17, 36, 0.95)',
               backdropFilter: 'blur(16px)',
               WebkitBackdropFilter: 'blur(16px)',
@@ -105,8 +108,8 @@ export default function QLEBenefits() {
               }}
             >
               {/* Icon + Title row */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                <div style={{
+              <div className="card-header-row" style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                <div className="card-icon-box" style={{
                   width: 48, height: 48, borderRadius: '14px',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   fontSize: '1.5rem',
@@ -114,14 +117,14 @@ export default function QLEBenefits() {
                   border: `1px solid ${b.accent}30`,
                   flexShrink: 0
                 }}>{b.icon}</div>
-                <h3 style={{
+                <h3 className="card-title-text" style={{
                   fontSize: '1.1rem', fontWeight: 800, color: 'white',
                   margin: 0, lineHeight: 1.2
                 }}>{b.title}</h3>
               </div>
 
               {/* Description */}
-              <p style={{
+              <p className="card-desc-text" style={{
                 fontSize: '0.9rem',
                 color: 'rgba(255,255,255,0.7)',
                 margin: 0,
@@ -129,7 +132,7 @@ export default function QLEBenefits() {
               }}>{b.desc}</p>
 
               {/* Accent tag */}
-              <div style={{
+              <div className="card-footer-tag" style={{
                 marginTop: 'auto',
                 paddingTop: '12px',
                 borderTop: '1px solid rgba(255,255,255,0.08)',
@@ -147,6 +150,44 @@ export default function QLEBenefits() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 767px) {
+          .benefits-grid-layout {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+            padding: 0 8px !important;
+          }
+          .benefit-card-item {
+            padding: 16px 12px !important;
+            border-radius: 16px !important;
+            gap: 8px !important;
+          }
+          .card-header-row {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 6px !important;
+          }
+          .card-icon-box {
+            width: 36px !important;
+            height: 36px !important;
+            border-radius: 8px !important;
+            font-size: 1.15rem !important;
+          }
+          .card-title-text {
+            font-size: 0.85rem !important;
+            line-height: 1.3 !important;
+          }
+          .card-desc-text {
+            font-size: 0.72rem !important;
+            line-height: 1.45 !important;
+            color: rgba(255, 255, 255, 0.6) !important;
+          }
+          .card-footer-tag {
+            display: none !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

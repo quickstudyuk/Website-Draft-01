@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './ParentVideos.module.css';
 
 interface Testimonial {
@@ -42,6 +42,38 @@ const testimonials: Testimonial[] = [
 export default function ParentVideos() {
   const [activeVideo, setActiveVideo] = useState<Testimonial | null>(null);
   const [videoHasError, setVideoHasError] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerView, setItemsPerView] = useState(3);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    const updateItemsPerView = () => {
+      if (window.innerWidth < 640) setItemsPerView(1);
+      else if (window.innerWidth < 1024) setItemsPerView(2);
+      else setItemsPerView(3);
+    };
+
+    updateItemsPerView();
+    window.addEventListener('resize', updateItemsPerView);
+    return () => window.removeEventListener('resize', updateItemsPerView);
+  }, []);
+
+  const totalSlides = Math.max(0, testimonials.length - itemsPerView + 1);
+
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % totalSlides);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [isPaused, totalSlides]);
+
+  const handleDotClick = (index: number) => {
+    setCurrentIndex(index);
+  };
+
 
   const openVideoModal = (testimonial: Testimonial) => {
     setActiveVideo(testimonial);
@@ -66,35 +98,67 @@ export default function ParentVideos() {
           </p>
         </div>
 
-        <div className={styles.grid}>
-          {testimonials.map((t) => (
-            <div 
-              key={t.id} 
-              className={styles.card}
-              onClick={() => openVideoModal(t)}
-            >
-              <div className={styles.videoWrapper}>
-                <img 
-                  src={t.thumbnail} 
-                  alt={`${t.name}'s testimonial thumbnail`} 
-                  className={styles.thumbnail}
-                />
-                <div className={styles.playButtonOverlay}>
-                  <svg className={styles.playIcon} viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
+        <div 
+          className={styles.carouselContainer}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
+        >
+          <div 
+            className={styles.carouselTrack}
+            style={{ 
+              transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)` 
+            }}
+          >
+            {testimonials.map((t) => (
+              <div 
+                key={t.id} 
+                className={styles.carouselCardWrapper}
+                style={{ flex: `0 0 ${100 / itemsPerView}%` }}
+              >
+                <div 
+                  className={styles.card}
+                  onClick={() => openVideoModal(t)}
+                >
+                  <div className={styles.videoWrapper}>
+                    <img 
+                      src={t.thumbnail} 
+                      alt={`${t.name}'s testimonial thumbnail`} 
+                      className={styles.thumbnail}
+                    />
+                    <div className={styles.playButtonOverlay}>
+                      <svg className={styles.playIcon} viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className={styles.cardContent}>
+                    <p className={styles.quote}>{t.quote}</p>
+                    <div className={styles.authorMeta}>
+                      <div className={styles.authorName}>{t.name}</div>
+                      <div className={styles.authorRole}>{t.role}</div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className={styles.cardContent}>
-                <p className={styles.quote}>{t.quote}</p>
-                <div className={styles.authorMeta}>
-                  <div className={styles.authorName}>{t.name}</div>
-                  <div className={styles.authorRole}>{t.role}</div>
-                </div>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+
+        {/* Pagination Dots */}
+        {totalSlides > 1 && (
+          <div className={styles.pagination}>
+            {Array.from({ length: totalSlides }).map((_, idx) => (
+              <button
+                key={idx}
+                className={`${styles.dot} ${currentIndex === idx ? styles.activeDot : ''}`}
+                onClick={() => handleDotClick(idx)}
+                aria-label={`Go to slide ${idx + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Video Overlay Modal */}

@@ -220,3 +220,69 @@
   border-color: #38bdf8 !important;
   color: #0f172a !important;
 }
+
+.mobileDashboardContainer {
+  display: block;
+  width: 100%;
+}
+
+.desktopDashboardContainer {
+  display: none;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .mobileDashboardContainer {
+    display: none;
+  }
+  .desktopDashboardContainer {
+    display: block;
+  }
+}
+
+.viewDashboardBtn {
+  padding: 14px 24px;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1.5px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+  border-radius: 16px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.2s ease-in-out;
+}
+
+.viewDashboardBtn:hover {
+  background: rgba(56, 189, 248, 0.15);
+  transform: translateY(-2px);
+}
+
+.hideDashboardBtn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-decoration: underline;
+  display: block;
+  margin: 12px auto 0 auto;
+  transition: color 0.2s;
+}
+
+.hideDashboardBtn:hover {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 767px) {
+  .dashboardMockup {
+    transform: none !important;
+  }
+  .dashboardMockup:hover {
+    transform: none !important;
+  }
+}
+
+

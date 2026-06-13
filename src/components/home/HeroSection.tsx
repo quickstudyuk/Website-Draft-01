@@ -1,21 +1,26 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import HeroDiagnosticTest from './HeroDiagnosticTest';
+import { useDiagnosticModalOpen, setDiagnosticModalOpen } from './LearningProfileStore';
 
 export default function HeroSection() {
+  const isModalOpen = useDiagnosticModalOpen();
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isModalOpen]);
+
   return (
-    <section style={{ 
-      position: 'relative', 
-      minHeight: '85vh', 
-      display: 'flex', 
-      alignItems: 'center', 
-      paddingTop: 'calc(85px + var(--spacing-8))', 
-      marginTop: '-85px',
-      paddingBottom: 'var(--spacing-12)',
-      overflow: 'hidden' 
-    }}>
+    <section className="hero-section-wrapper">
       {/* Background Effects matching godaylight.com style - Dark Theme */}
       <div style={{
         position: 'absolute',
@@ -70,26 +75,29 @@ export default function HeroSection() {
               color: '#ffffff',
               marginBottom: 'var(--spacing-5)'
             }}>
+              <span style={{ display: 'block', marginBottom: '6px' }}>We Make</span>
               <span style={{ 
                 backgroundColor: '#facc15', 
                 color: '#0f172a', 
-                padding: '4px 14px 8px', 
+                padding: '2px 14px 6px', 
                 borderRadius: '8px',
                 display: 'inline-block',
+                lineHeight: '1.1',
+                marginRight: '8px',
+                marginBottom: '6px',
+                whiteSpace: 'nowrap'
+              }}>High-Quality</span>{' '}
+              <span style={{ 
+                backgroundColor: '#facc15', 
+                color: '#0f172a', 
+                padding: '2px 14px 6px', 
+                borderRadius: '8px',
+                display: 'inline-block',
+                lineHeight: '1.1',
                 marginBottom: '6px'
-              }}>From Struggles</span>
+              }}>Education</span>
               <br />
-              <span style={{ 
-                backgroundColor: '#facc15', 
-                color: '#0f172a', 
-                padding: '4px 14px 8px', 
-                borderRadius: '8px',
-                display: 'inline-block',
-                marginBottom: '10px'
-              }}>to Success</span>
-              <br />
-              <span style={{ display: 'block' }}>We Make It Simple</span>
-              <span style={{ display: 'block' }}>For Every Student.</span>
+              <span style={{ display: 'block', marginTop: '4px' }}>Accessible for all</span>
             </h1>
             
             <p style={{ 
@@ -99,7 +107,7 @@ export default function HeroSection() {
               marginBottom: 'var(--spacing-6)',
               maxWidth: '90%'
             }}>
-              Personalised tutoring, regular parent updates, AI-driven insights, and structured learning plans designed to help students from all backgrounds starting from Year 7 to A-Level achieve their full potential.
+              Personalised 1:1 tutoring, regular parent updates, AI-driven insights, and structured learning plans designed to help students from all backgrounds starting from Year 7 to A-Level achieve their full potential.
             </p>
 
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
@@ -169,11 +177,53 @@ export default function HeroSection() {
 
           {/* Right Side: Interactive Visual & Communities */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
-            <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+            
+            {/* Desktop Only Inline Survey */}
+            <div className="hero-diagnostic-desktop-only" style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
               <HeroDiagnosticTest />
               <p style={{ fontSize: '0.85rem', fontWeight: 600, color: '#38bdf8', textAlign: 'center', margin: 0 }}>
                 Take our 60-second test to understand your child's learning profile.
               </p>
+            </div>
+
+            {/* Mobile Only Survey Trigger Button */}
+            <div className="hero-diagnostic-mobile-only" style={{ width: '100%', marginTop: '8px' }}>
+              <button 
+                onClick={() => setDiagnosticModalOpen(true)}
+                style={{
+                  width: '100%',
+                  padding: '16px 24px',
+                  background: 'linear-gradient(135deg, #facc15 0%, #f59e0b 100%)',
+                  color: '#0f172a',
+                  border: 'none',
+                  borderRadius: '20px',
+                  fontWeight: 800,
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 20px rgba(250, 204, 21, 0.35)',
+                  transition: 'all 0.2s ease',
+                  textAlign: 'center',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '4px'
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(250, 204, 21, 0.45)';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(250, 204, 21, 0.35)';
+                }}
+              >
+                <span style={{ fontSize: '1.05rem', letterSpacing: '-0.01em', display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'center' }}>
+                  Complete your child's learning profile
+                </span>
+                <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'rgba(15, 23, 42, 0.75)' }}>
+                  It only takes 30 seconds
+                </span>
+              </button>
             </div>
 
             <div style={{ 
@@ -301,12 +351,105 @@ export default function HeroSection() {
         </div>
       </div>
 
+      {/* Mobile Modal Popup */}
+      {isModalOpen && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          backgroundColor: 'rgba(2, 6, 23, 0.85)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          zIndex: 9999,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '16px',
+          boxSizing: 'border-box'
+        }}
+        onClick={() => setDiagnosticModalOpen(false)}
+        >
+          <div style={{
+            position: 'relative',
+            width: '100%',
+            maxWidth: '550px',
+            maxHeight: '90vh',
+            overflowY: 'auto',
+            borderRadius: '32px',
+            backgroundColor: '#090d1a',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+          }}
+          onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button 
+              onClick={() => setDiagnosticModalOpen(false)}
+              style={{
+                position: 'absolute',
+                top: '16px',
+                right: '16px',
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                color: 'white',
+                fontSize: '18px',
+                fontWeight: 'bold',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                zIndex: 10,
+                transition: 'all 0.2s'
+              }}
+              onMouseOver={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.15)'; }}
+              onMouseOut={(e) => { e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)'; }}
+            >
+              ✕
+            </button>
+            
+            <div style={{ padding: '8px' }}>
+              <HeroDiagnosticTest />
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Grid specific responsive styles */}
       <style>{`
+        .hero-section-wrapper {
+          position: relative;
+          min-height: 85vh;
+          display: flex;
+          align-items: center;
+          padding-top: calc(85px + var(--spacing-8));
+          margin-top: -85px;
+          padding-bottom: var(--spacing-12);
+          overflow: hidden;
+        }
+        @media (max-width: 767px) {
+          .hero-section-wrapper {
+            min-height: auto !important;
+            padding-top: 100px !important;
+            padding-bottom: 16px !important;
+          }
+        }
         @media (min-width: 1024px) {
           .hero-grid {
             grid-template-columns: 1.1fr 0.9fr !important;
             gap: var(--spacing-8) !important;
+          }
+          .hero-diagnostic-mobile-only {
+            display: none !important;
+          }
+        }
+        @media (max-width: 1023px) {
+          .hero-diagnostic-desktop-only {
+            display: none !important;
           }
         }
       `}</style>

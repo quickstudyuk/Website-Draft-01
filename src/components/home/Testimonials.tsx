@@ -82,6 +82,16 @@ export default function Testimonials() {
   const [feedbacks, setFeedbacks] = useState<FeedbackItem[]>(DEFAULT_FEEDBACKS);
   const [expanded, setExpanded] = useState(false);
   const [showForm, setShowForm] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Form states
   const [name, setName] = useState('');
@@ -145,7 +155,8 @@ export default function Testimonials() {
     }, 2500);
   };
 
-  const visibleFeedbacks = expanded ? feedbacks : feedbacks.slice(0, 3);
+  const limit = isMobile ? 1 : 3;
+  const visibleFeedbacks = expanded ? feedbacks : feedbacks.slice(0, limit);
 
   return (
     <section className="section-padding" style={{ backgroundColor: 'var(--gray-50)', padding: 'var(--spacing-16) 0' }}>
@@ -164,27 +175,27 @@ export default function Testimonials() {
         }}>
           {visibleFeedbacks.map((item, idx) => (
             <BaseCard key={idx} style={{ 
-              padding: 'var(--spacing-6)', 
+              padding: isMobile ? '16px' : 'var(--spacing-6)', 
               backgroundColor: 'white', 
               border: '1px solid var(--gray-200)', 
               textAlign: 'center', 
               display: 'flex', 
               flexDirection: 'column', 
-              gap: 'var(--spacing-3)',
+              gap: isMobile ? '8px' : 'var(--spacing-3)',
               borderRadius: '20px',
               boxShadow: '0 8px 30px rgba(0,0,0,0.02)',
               justifyContent: 'space-between',
-              minHeight: '200px'
+              minHeight: isMobile ? '120px' : '200px'
             }}>
               <div>
-                <div style={{ color: '#fbbf24', fontSize: '1.2rem', letterSpacing: '2px', marginBottom: '8px' }}>
+                <div style={{ color: '#fbbf24', fontSize: isMobile ? '0.95rem' : '1.2rem', letterSpacing: '2px', marginBottom: '8px' }}>
                   {'★'.repeat(item.stars)}{'☆'.repeat(5 - item.stars)}
                 </div>
-                <p style={{ fontSize: '1.05rem', color: 'var(--gray-800)', fontStyle: 'italic', lineHeight: 1.5, margin: 0 }}>
+                <p style={{ fontSize: isMobile ? '0.9rem' : '1.05rem', color: 'var(--gray-800)', fontStyle: 'italic', lineHeight: 1.5, margin: 0 }}>
                   &quot;{item.quote}&quot;
                 </p>
               </div>
-              <div style={{ fontSize: '0.875rem', color: 'var(--gray-500)', fontWeight: 600, marginTop: '8px' }}>
+              <div style={{ fontSize: isMobile ? '0.78rem' : '0.875rem', color: 'var(--gray-500)', fontWeight: 600, marginTop: '8px' }}>
                 — {item.author}
               </div>
             </BaseCard>
@@ -195,7 +206,7 @@ export default function Testimonials() {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', marginTop: '24px' }}>
           
           {/* & [count] More Feedbacks Link */}
-          {feedbacks.length > 3 && (
+          {((isMobile && feedbacks.length > 1) || (!isMobile && feedbacks.length > 3)) && (
             <button 
               onClick={() => setExpanded(!expanded)}
               style={{
@@ -213,7 +224,11 @@ export default function Testimonials() {
               onMouseOver={(e) => e.currentTarget.style.opacity = '0.8'}
               onMouseOut={(e) => e.currentTarget.style.opacity = '1'}
             >
-              {expanded ? 'Show Less' : `& ${feedbacks.length - 3} More Feedbacks →`}
+              {expanded 
+                ? 'Show Less' 
+                : isMobile 
+                  ? `View ${feedbacks.length - 1} more reviews` 
+                  : `& ${feedbacks.length - 3} More Feedbacks →`}
             </button>
           )}
 

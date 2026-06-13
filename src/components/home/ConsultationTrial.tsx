@@ -18,8 +18,6 @@ export default function ConsultationTrial() {
     <section id="get-started" style={{ 
       backgroundColor: 'var(--gray-900)', 
       color: 'white',
-      paddingTop: '40px', // Reduced black space at the top
-      paddingBottom: '90px',
       position: 'relative',
       overflow: 'hidden'
     }}>
@@ -103,6 +101,10 @@ export default function ConsultationTrial() {
       </div>
 
       <style>{`
+        #get-started {
+          padding-top: 40px;
+          padding-bottom: 90px;
+        }
         .trial-grid {
           display: grid;
           grid-template-columns: 1fr;
@@ -242,25 +244,58 @@ export default function ConsultationTrial() {
         }
 
         @media (max-width: 768px) {
+          #get-started {
+            padding-top: 24px !important;
+            padding-bottom: 32px !important;
+          }
+          .trial-flip-card {
+            height: 180px !important;
+          }
+          .trial-flip-card-front, .trial-flip-card-back {
+            padding: 14px 16px !important;
+            border-radius: 16px !important;
+            gap: 4px !important;
+          }
+          .trial-card-title {
+            font-size: 1.05rem !important;
+          }
+          .trial-card-desc {
+            font-size: 0.82rem !important;
+            line-height: 1.35 !important;
+          }
+          .trial-card-bestfor {
+            font-size: 0.78rem !important;
+            margin-top: 0 !important;
+          }
+          .trial-card-back-title {
+            font-size: 1rem !important;
+          }
+          .trial-card-back-text {
+            font-size: 0.78rem !important;
+            line-height: 1.3 !important;
+            margin-bottom: 2px !important;
+          }
+          .trial-book-btn {
+            padding: 8px var(--spacing-4) !important;
+            font-size: 0.85rem !important;
+          }
           .mobile-tap-hint {
-            display: block;
-            font-size: 0.75rem;
-            color: #38bdf8;
+            display: block !important;
+            font-size: 0.65rem !important;
+            color: #38bdf8 !important;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            text-align: center;
+            position: absolute !important;
+            bottom: 10px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 100% !important;
+            text-align: center !important;
+            margin: 0 !important;
           }
           .trial-flip-card-front {
-            padding-bottom: 48px;
-          }
-          .trial-flip-card {
-            height: 300px;
+            padding-bottom: 28px !important;
           }
         }
       `}</style>

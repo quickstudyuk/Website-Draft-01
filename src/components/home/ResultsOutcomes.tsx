@@ -546,6 +546,11 @@ export default function ResultsOutcomes() {
             line-height: 1.4;
           }
         }
+        @media (max-width: 767px) {
+          .mastery-section {
+            display: none !important;
+          }
+        }
       `}</style>
     </section>
   );
