@@ -17,7 +17,7 @@ const testimonials: Testimonial[] = [
     id: 1,
     name: "Misbah Ur Rahman",
     role: "Parent of Year 11 GCSE Student",
-    quote: "QuickStudy completely transformed how my son prepared for his GCSEs. The live dashboard kept me updated every week, and his confidence in Maths and Science soared from a grade 5 to a grade 9.",
+    quote: "QuickStudy completely transformed how my son prepared for his GCSEs.",
     thumbnail: "/testimonials/parent1_thumb.png",
     videoUrl: "/testimonials/parent1.mp4"
   },
@@ -25,7 +25,7 @@ const testimonials: Testimonial[] = [
     id: 2,
     name: "Hazel",
     role: "Parent of Year 8 Student",
-    quote: "I used to struggle to get my daughter to do her homework, but the personalized study plans and bite-sized goals at QuickStudy turned her anxiety into excitement. The tutors are incredibly supportive!",
+    quote: "The live parents dashboard kept me updated every session on her homeworks and progress",
     thumbnail: "/testimonials/parent2_thumb.png",
     videoUrl: "/testimonials/parent2.mp4"
   },
@@ -33,7 +33,7 @@ const testimonials: Testimonial[] = [
     id: 3,
     name: "Mihi Joy",
     role: "Parent of Year 13 A-Level Student",
-    quote: "The exam technique tutoring at QuickStudy made all the difference for my daughter's A-levels. She learned exactly how to answer exam questions to get top marks and got accepted into her dream university.",
+    quote: "The exam technique tutoring at QuickStudy made all the difference for my daughter's A-levels.",
     thumbnail: "/testimonials/parent3_thumb.png",
     videoUrl: "/testimonials/parent3.mp4"
   }
