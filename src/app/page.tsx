@@ -7,6 +7,8 @@ import ResultsOutcomes from '@/components/home/ResultsOutcomes';
 import ConsultationTrial from '@/components/home/ConsultationTrial';
 import Testimonials from '@/components/home/Testimonials';
 
+import Mentors from '@/components/home/Mentors';
+
 export const metadata = {
   title: 'QuickStudy | A Smarter Way To Help Your Child Succeed',
   description: 'Personalised tutoring, structured learning plans, and AI-powered learning tools designed to improve confidence, understanding, and academic performance.',
@@ -21,6 +23,7 @@ export default function Home() {
       <QLEPreview />
       <ResultsOutcomes />
       <ConsultationTrial />
+      <Mentors />
       <Testimonials />
     </main>
   );
