@@ -1,0 +1,331 @@
+.section {
+  position: relative;
+  background-color: #ffffff;
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+/* Background decorative blur shapes */
+.bgBlur1 {
+  position: absolute;
+  top: -10%;
+  left: -5%;
+  width: 35vw;
+  height: 35vw;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.06) 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.bgBlur2 {
+  position: absolute;
+  bottom: -10%;
+  right: -5%;
+  width: 35vw;
+  height: 35vw;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 56px auto;
+}
+
+.title {
+  font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 32px;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(15, 23, 42, 0.05);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
+}
+
+.videoWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: #0f172a;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover .thumbnail {
+  transform: scale(1.06);
+}
+
+.playButtonOverlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(30, 58, 138, 0.9);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 20px rgba(30, 58, 138, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+}
+
+.playIcon {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  margin-left: 3px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .playButtonOverlay {
+  background: #38bdf8;
+  transform: translate(-50%, -50%) scale(1.12);
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.card:hover .playIcon {
+  transform: scale(1.1);
+}
+
+.cardContent {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 16px;
+  background: linear-gradient(to bottom, #ffffff, #fafafa);
+}
+
+.quote {
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.6;
+  font-style: italic;
+  font-weight: 550;
+  margin: 0;
+  position: relative;
+}
+
+.quote::before {
+  content: '"';
+  font-size: 2rem;
+  color: rgba(30, 58, 138, 0.1);
+  position: absolute;
+  top: -12px;
+  left: -8px;
+  font-family: serif;
+}
+
+.authorMeta {
+  margin-top: auto;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  padding-top: 14px;
+}
+
+.authorName {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+
+.authorRole {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* Modal Styling */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.modalContent {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  aspect-ratio: 16 / 9;
+  background-color: #0f172a;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: scaleIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+  backdrop-filter: blur(4px);
+}
+
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.08) rotate(90deg);
+}
+
+.videoPlayer {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  background-color: #000000;
+}
+
+/* Fallback/Error Overlay */
+.errorFallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  padding: 40px;
+  text-align: center;
+  color: #ffffff;
+  box-sizing: border-box;
+}
+
+.errorIcon {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.errorIcon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.errorTitle {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.01em;
+}
+
+.errorDesc {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  max-width: 480px;
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+}
+
+.errorCodeBlock {
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: monospace;
+  font-size: 0.85rem;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: #38bdf8;
+  margin: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.92);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

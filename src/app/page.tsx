@@ -1,5 +1,6 @@
 import React from 'react';
 import HeroSection from '@/components/home/HeroSection';
+import ParentVideos from '@/components/home/ParentVideos';
 import ParentStruggles from '@/components/home/ParentStruggles';
 import TheSolution from '@/components/home/TheSolution';
 import QLEPreview from '@/components/home/QLEPreview';
@@ -18,6 +19,7 @@ export default function Home() {
   return (
     <main>
       <HeroSection />
+      <ParentVideos />
       <ParentStruggles />
       <TheSolution />
       <QLEPreview />
